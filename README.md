@@ -1,8 +1,10 @@
 # Hola a todos...
 ¡Bienvenido/a a mi perfil de Ciencia de Datos! 🚀 Este perfil está diseñado para mostrar ejemplos, análisis y herramientas útiles para el procesamiento y la visualización de datos.
 ### ⚡ Actividad reciente
-<!--START_SECTION:activity-->
+
 <!--RECENT_ACTIVITY:start-->
+<!--RECENT_ACTIVITY:last_update-->
+
 
 
 📌 Descripción

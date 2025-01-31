@@ -3,14 +3,14 @@
 ### ⚡ Actividad reciente
 
 <!--RECENT_ACTIVITY:start-->
-1. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
+1. ⬆️ Pushed 2 commit(s) to [santiloc-hub/Salary-Prediction-using-Linear-Regression](https://github.com/santiloc-hub/Salary-Prediction-using-Linear-Regression)<br>
 2. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
 3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
 4. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
-5. ⬆️ Pushed 2 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
+5. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Friday, January 31st, 2025, 10:52:16 AM
+Last Updated: Friday, January 31st, 2025, 11:10:11 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

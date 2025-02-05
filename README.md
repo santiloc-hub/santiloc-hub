@@ -5,12 +5,12 @@
 <!--RECENT_ACTIVITY:start-->
 1. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Road_dataset_analysis](https://github.com/santiloc-hub/Road_dataset_analysis)<br>
 2. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Road_dataset_analysis](https://github.com/santiloc-hub/Road_dataset_analysis)<br>
-3. 📔 Created new repository [santiloc-hub/Road_dataset_analysis](https://github.com/santiloc-hub/Road_dataset_analysis)<br>
-4. ⬆️ Pushed 2 commit(s) to [santiloc-hub/Salary-Prediction-using-Linear-Regression](https://github.com/santiloc-hub/Salary-Prediction-using-Linear-Regression)<br>
-5. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Data-Science-Salary-Analisis](https://github.com/santiloc-hub/Data-Science-Salary-Analisis)<br>
+3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Road_dataset_analysis](https://github.com/santiloc-hub/Road_dataset_analysis)<br>
+4. 📔 Created new repository [santiloc-hub/Road_dataset_analysis](https://github.com/santiloc-hub/Road_dataset_analysis)<br>
+5. ⬆️ Pushed 2 commit(s) to [santiloc-hub/Salary-Prediction-using-Linear-Regression](https://github.com/santiloc-hub/Salary-Prediction-using-Linear-Regression)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Wednesday, February 5th, 2025, 5:51:19 PM
+Last Updated: Wednesday, February 5th, 2025, 6:17:21 PM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

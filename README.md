@@ -6,11 +6,11 @@
 1. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
 2. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
 3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
-4. 📔 Created new repository [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
-5. 📔 Created new repository [santiloc-hub/Linear-Regresion-For-Car-Price](https://github.com/santiloc-hub/Linear-Regresion-For-Car-Price)<br>
+4. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
+5. 📔 Created new repository [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Sunday, February 23rd, 2025, 10:11:00 PM
+Last Updated: Sunday, February 23rd, 2025, 10:28:57 PM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

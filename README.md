@@ -3,14 +3,14 @@
 ### ⚡ Actividad reciente
 
 <!--RECENT_ACTIVITY:start-->
-1. 📔 Created new repository [santiloc-hub/Churn_Prediction](https://github.com/santiloc-hub/Churn_Prediction)<br>
-2. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-Linear-Regresion](https://github.com/santiloc-hub/Apartament-Linear-Regresion)<br>
-3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
+1. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Churn_Prediction](https://github.com/santiloc-hub/Churn_Prediction)<br>
+2. 📔 Created new repository [santiloc-hub/Churn_Prediction](https://github.com/santiloc-hub/Churn_Prediction)<br>
+3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-Linear-Regresion](https://github.com/santiloc-hub/Apartament-Linear-Regresion)<br>
 4. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
 5. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Apartament-price-Linear-Regresion](https://github.com/santiloc-hub/Apartament-price-Linear-Regresion)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Saturday, March 22nd, 2025, 4:14:18 PM
+Last Updated: Saturday, March 22nd, 2025, 4:37:29 PM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

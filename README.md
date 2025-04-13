@@ -3,14 +3,14 @@
 ### ⚡ Actividad reciente
 
 <!--RECENT_ACTIVITY:start-->
-1. ⬆️ Pushed 20 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
+1. ⬆️ Pushed 1 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
 2. ⬆️ Pushed 1 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
 3. ⬆️ Pushed 1 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
 4. ⬆️ Pushed 1 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
-5. ⬆️ Pushed 1 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
+5. ⬆️ Pushed 20 commit(s) to [seba098098/Projecto_TRM](https://github.com/seba098098/Projecto_TRM)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Sunday, April 13th, 2025, 6:17:18 PM
+Last Updated: Sunday, April 13th, 2025, 6:39:37 PM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

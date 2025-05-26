@@ -4,13 +4,13 @@
 
 <!--RECENT_ACTIVITY:start-->
 1. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Moshi-Exploration](https://github.com/santiloc-hub/Moshi-Exploration)<br>
-2. 📔 Created new repository [santiloc-hub/Moshi-Exploration](https://github.com/santiloc-hub/Moshi-Exploration)<br>
-3. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Soccer_Prediction](https://github.com/santiloc-hub/Soccer_Prediction)<br>
+2. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Moshi-Exploration](https://github.com/santiloc-hub/Moshi-Exploration)<br>
+3. 📔 Created new repository [santiloc-hub/Moshi-Exploration](https://github.com/santiloc-hub/Moshi-Exploration)<br>
 4. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Soccer_Prediction](https://github.com/santiloc-hub/Soccer_Prediction)<br>
-5. 📔 Created new repository [santiloc-hub/Soccer_Prediction](https://github.com/santiloc-hub/Soccer_Prediction)<br>
+5. ⬆️ Pushed 1 commit(s) to [santiloc-hub/Soccer_Prediction](https://github.com/santiloc-hub/Soccer_Prediction)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Monday, May 26th, 2025, 5:51:21 PM
+Last Updated: Monday, May 26th, 2025, 6:18:55 PM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

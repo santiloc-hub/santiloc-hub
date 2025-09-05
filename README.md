@@ -7,7 +7,7 @@
 2. 🔱 Forked [santiloc-hub/speech-assistant-openai-realtime-api-python](https://github.com/santiloc-hub/speech-assistant-openai-realtime-api-python) from [twilio-samples/speech-assistant-openai-realtime-api-python](https://github.com/twilio-samples/speech-assistant-openai-realtime-api-python)<br>
 <!--RECENT_ACTIVITY:end-->
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Friday, September 5th, 2025, 10:51:39 AM
+Last Updated: Friday, September 5th, 2025, 11:11:07 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 

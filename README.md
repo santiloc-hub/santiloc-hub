@@ -2,8 +2,7 @@
 ¡Bienvenido/a a mi perfil de Ciencia de Datos! 🚀 Este perfil está diseñado para mostrar ejemplos, análisis y herramientas útiles para el procesamiento y la visualización de datos.
 
 <!--CV_STATUS:start-->
-> **Status:** ✅ Ready for the next phase — Data Engineer & AI Developer  
-> 📄 [Download CV (PDF)](./CV.pdf) &nbsp;·&nbsp; Last updated: April 11, 2026
+<!-- status: Ready for the next phase — Data Engineer & AI Developer | cv_en: ./CV_EN.pdf | cv_es: ./CV_ES.pdf | updated: April 11, 2026 -->
 <!--CV_STATUS:end-->
 
 ### ⚡ Actividad reciente

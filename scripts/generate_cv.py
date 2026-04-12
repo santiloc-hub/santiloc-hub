@@ -2,7 +2,7 @@
 """
 CV Generator
 ------------
-Reads cv_data.yaml → generates CV.pdf (weasyprint) and updates README.md badge.
+Reads cv_data.yaml → generates CV_EN.pdf + CV_ES.pdf and updates README.md badge.
 
 Usage:
   pip install weasyprint pyyaml
@@ -18,11 +18,54 @@ from datetime import datetime
 ROOT = Path(__file__).parent.parent
 
 # ---------------------------------------------------------------------------
+# Labels per language
+# ---------------------------------------------------------------------------
+
+LABELS = {
+    "en": {
+        "summary":     "Professional Summary",
+        "experience":  "Work Experience",
+        "skills":      "Technical Skills",
+        "projects":    "Featured Projects",
+        "education":   "Education",
+        "lang":        "Languages",
+        "courses":     "Courses & Certifications",
+        "skills_map": {
+            "data_engineering":  "Data Engineering & Orchestration",
+            "ml_ai":             "Machine Learning & AI",
+            "conversational_ai": "AI Conversational & Chatbots",
+            "languages":         "Programming Languages",
+            "cloud_devops":      "Cloud & DevOps",
+            "databases":         "Databases",
+            "visualization":     "Visualization & BI",
+        },
+    },
+    "es": {
+        "summary":     "Perfil Profesional",
+        "experience":  "Experiencia Laboral",
+        "skills":      "Habilidades Técnicas",
+        "projects":    "Proyectos Destacados",
+        "education":   "Educación",
+        "lang":        "Idiomas",
+        "courses":     "Cursos y Certificaciones",
+        "skills_map": {
+            "data_engineering":  "Ingeniería de Datos y Orquestación",
+            "ml_ai":             "Machine Learning e IA",
+            "conversational_ai": "IA Conversacional y Chatbots",
+            "languages":         "Lenguajes de Programación",
+            "cloud_devops":      "Cloud y DevOps",
+            "databases":         "Bases de Datos",
+            "visualization":     "Visualización y BI",
+        },
+    },
+}
+
+# ---------------------------------------------------------------------------
 # HTML / CSS template
 # ---------------------------------------------------------------------------
 
 HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
+<html lang="{lang_code}">
 <head>
 <meta charset="UTF-8">
 <style>
@@ -43,7 +86,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     background: #1e3a8a;
     color: #ffffff;
     padding: 13px 16px 11px;
-    margin-bottom: 0;
   }}
   .header h1 {{
     font-size: 21pt;
@@ -63,17 +105,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     display: flex;
     gap: 18px;
     flex-wrap: wrap;
-  }}
-
-  /* ── Status badge ── */
-  .badge {{
-    background: #f0fdf4;
-    border-left: 4px solid #16a34a;
-    padding: 5px 12px;
-    margin: 8px 0;
-    font-size: 9pt;
-    font-weight: 700;
-    color: #14532d;
   }}
 
   /* ── Sections ── */
@@ -148,7 +179,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <h1>{name}</h1>
   <div class="tagline">{tagline}</div>
@@ -159,52 +189,44 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   </div>
 </div>
 
-<!-- STATUS BADGE -->
-<div class="badge">&#10003; {readiness_status}</div>
-
-<!-- SUMMARY -->
 <div class="section">
-  <div class="section-title">Professional Summary</div>
+  <div class="section-title">{lbl_summary}</div>
   <div class="summary">{summary}</div>
 </div>
 
-<!-- EXPERIENCE -->
 <div class="section">
-  <div class="section-title">Work Experience</div>
+  <div class="section-title">{lbl_experience}</div>
   {experience_html}
 </div>
 
-<!-- SKILLS -->
 <div class="section">
-  <div class="section-title">Technical Skills</div>
+  <div class="section-title">{lbl_skills}</div>
   <div class="skills-grid">
     {skills_html}
   </div>
 </div>
 
-<!-- PROJECTS + EDUCATION side by side -->
 <div class="two-col">
   <div>
     <div class="section">
-      <div class="section-title">Featured Projects</div>
+      <div class="section-title">{lbl_projects}</div>
       {projects_html}
     </div>
   </div>
   <div>
     <div class="section">
-      <div class="section-title">Education</div>
+      <div class="section-title">{lbl_education}</div>
       {education_html}
     </div>
     <div class="section" style="margin-top:8px">
-      <div class="section-title">Languages</div>
+      <div class="section-title">{lbl_lang}</div>
       {languages_html}
     </div>
   </div>
 </div>
 
-<!-- COURSES -->
 <div class="section">
-  <div class="section-title">Courses &amp; Certifications</div>
+  <div class="section-title">{lbl_courses}</div>
   <div class="courses-grid">
     {courses_html}
   </div>
@@ -215,52 +237,53 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
 
 # ---------------------------------------------------------------------------
-# Renderers
+# Helpers
 # ---------------------------------------------------------------------------
 
 def _esc(text: str) -> str:
-    """Minimal HTML escaping."""
     return (str(text)
             .replace("&", "&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;"))
 
 
-def render_experience(jobs: list) -> str:
+def _t(obj: dict, key: str, lang: str) -> str:
+    """Get lang-specific value: obj[key_en] or obj[key_es], fallback to obj[key]."""
+    return obj.get(f"{key}_{lang}") or obj.get(key, "")
+
+
+# ---------------------------------------------------------------------------
+# Renderers
+# ---------------------------------------------------------------------------
+
+def render_experience(jobs: list, lang: str) -> str:
     parts = []
     for job in jobs:
-        bullets = "".join(f"<li>{_esc(b)}</li>" for b in job.get("bullets", []))
-        desc = f'<div class="job-desc">{_esc(job.get("description", "").strip())}</div>' if job.get("description") else ""
+        title = _t(job, "title", lang)
+        desc  = _t(job, "description", lang).strip()
+        bullets = job.get(f"bullets_{lang}") or job.get("bullets", [])
+        bullet_html = "".join(f"<li>{_esc(b)}</li>" for b in bullets)
+        desc_html = f'<div class="job-desc">{_esc(desc)}</div>' if desc else ""
         parts.append(f"""
         <div class="job">
           <div class="job-row">
             <span>
-              <span class="job-title">{_esc(job['title'])}</span>
+              <span class="job-title">{_esc(title)}</span>
               &nbsp;—&nbsp;
               <span class="job-company">{_esc(job['company'])}, {_esc(job['location'])}</span>
             </span>
             <span class="job-date">{_esc(job['period'])}</span>
           </div>
-          {desc}
-          <ul>{bullets}</ul>
+          {desc_html}
+          <ul>{bullet_html}</ul>
         </div>""")
     return "\n".join(parts)
 
 
-SKILL_LABELS = {
-    "data_engineering":  "Data Engineering & Orchestration",
-    "ml_ai":             "Machine Learning & AI",
-    "conversational_ai": "AI Conversational & Chatbots",
-    "languages":         "Programming Languages",
-    "cloud_devops":      "Cloud & DevOps",
-    "databases":         "Databases",
-    "visualization":     "Visualization & BI",
-}
-
-
-def render_skills(skills: dict) -> str:
+def render_skills(skills: dict, lang: str) -> str:
+    skill_map = LABELS[lang]["skills_map"]
     parts = []
-    for key, label in SKILL_LABELS.items():
+    for key, label in skill_map.items():
         if key in skills:
             items = ", ".join(_esc(s) for s in skills[key])
             parts.append(
@@ -272,25 +295,29 @@ def render_skills(skills: dict) -> str:
     return "\n".join(parts)
 
 
-def render_projects(projects: list) -> str:
+def render_projects(projects: list, lang: str) -> str:
     parts = []
     for p in projects:
+        name  = _t(p, "name", lang)
+        desc  = _t(p, "description", lang).strip()
         tools = ", ".join(_esc(t) for t in p.get("tools", []))
+        tools_label = "Tools" if lang == "en" else "Herramientas"
         parts.append(f"""
         <div class="project">
-          <div class="project-name">{_esc(p['name'])}</div>
-          <div class="project-desc">{_esc(p['description'].strip())}</div>
-          <div class="project-tools">Tools: {tools}</div>
+          <div class="project-name">{_esc(name)}</div>
+          <div class="project-desc">{_esc(desc)}</div>
+          <div class="project-tools">{tools_label}: {tools}</div>
         </div>""")
     return "\n".join(parts)
 
 
-def render_education(edu: list) -> str:
+def render_education(edu: list, lang: str) -> str:
     parts = []
     for e in edu:
+        degree = _t(e, "degree", lang)
         parts.append(
             f'<div class="edu-item">'
-            f'<div class="edu-degree">{_esc(e["degree"])}</div>'
+            f'<div class="edu-degree">{_esc(degree)}</div>'
             f'<div class="edu-inst">{_esc(e["institution"])}</div>'
             f'</div>'
         )
@@ -326,28 +353,37 @@ def render_courses(courses: list) -> str:
 # PDF generation
 # ---------------------------------------------------------------------------
 
-def generate_pdf(data: dict, output_path: Path) -> None:
+def generate_pdf(data: dict, lang: str, output_path: Path) -> None:
     try:
         from weasyprint import HTML
     except ImportError:
         print("ERROR: weasyprint not installed. Run: pip install weasyprint", file=sys.stderr)
         sys.exit(1)
 
+    lbl  = LABELS[lang]
     meta = data["meta"]
+
     html = HTML_TEMPLATE.format(
-        name=_esc(meta["name"]),
-        tagline=_esc(meta["tagline"]),
-        email=_esc(meta["email"]),
-        phone=_esc(meta["phone"]),
-        linkedin=_esc(meta["linkedin"]),
-        readiness_status=_esc(meta["readiness_status"]),
-        summary=_esc(data["summary"].strip()),
-        experience_html=render_experience(data["experience"]),
-        skills_html=render_skills(data["skills"]),
-        projects_html=render_projects(data["projects"]),
-        education_html=render_education(data["education"]),
-        languages_html=render_languages(data["languages"]),
-        courses_html=render_courses(data["courses"]),
+        lang_code        = lang,
+        name             = _esc(meta["name"]),
+        tagline          = _esc(meta[f"tagline_{lang}"]),
+        email            = _esc(meta["email"]),
+        phone            = _esc(meta["phone"]),
+        linkedin         = _esc(meta["linkedin"]),
+        lbl_summary      = lbl["summary"],
+        lbl_experience   = lbl["experience"],
+        lbl_skills       = lbl["skills"],
+        lbl_projects     = lbl["projects"],
+        lbl_education    = lbl["education"],
+        lbl_lang         = lbl["lang"],
+        lbl_courses      = lbl["courses"],
+        summary          = _esc(data[f"summary_{lang}"].strip()),
+        experience_html  = render_experience(data["experience"], lang),
+        skills_html      = render_skills(data["skills"], lang),
+        projects_html    = render_projects(data["projects"], lang),
+        education_html   = render_education(data["education"], lang),
+        languages_html   = render_languages(data["spoken_languages"]),
+        courses_html     = render_courses(data["courses"]),
     )
 
     HTML(string=html, base_url=str(ROOT)).write_pdf(str(output_path))
@@ -364,13 +400,12 @@ README_END   = "<!--CV_STATUS:end-->"
 
 def update_readme(data: dict, readme_path: Path) -> None:
     content = readme_path.read_text(encoding="utf-8")
-    status = data["meta"]["readiness_status"]
-    now = datetime.now().strftime("%B %d, %Y")
+    status  = data["meta"]["readiness_status"]
+    now     = datetime.now().strftime("%B %d, %Y")
 
     badge = (
         f"{README_START}\n"
-        f"> **Status:** ✅ {status}  \n"
-        f"> 📄 [Download CV (PDF)](./CV.pdf) &nbsp;·&nbsp; Last updated: {now}\n"
+        f"<!-- status: {status} | cv_en: ./CV_EN.pdf | cv_es: ./CV_ES.pdf | updated: {now} -->\n"
         f"{README_END}"
     )
 
@@ -381,7 +416,6 @@ def update_readme(data: dict, readme_path: Path) -> None:
     if pattern.search(content):
         content = pattern.sub(badge, content)
     else:
-        # Insert right after the first heading line
         content = re.sub(r"(# .+\n)", r"\1\n" + badge + "\n\n", content, count=1)
 
     readme_path.write_text(content, encoding="utf-8")
@@ -393,8 +427,7 @@ def update_readme(data: dict, readme_path: Path) -> None:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    yaml_path  = ROOT / "cv_data.yaml"
-    pdf_path   = ROOT / "CV.pdf"
+    yaml_path   = ROOT / "cv_data.yaml"
     readme_path = ROOT / "README.md"
 
     if not yaml_path.exists():
@@ -404,6 +437,7 @@ if __name__ == "__main__":
     with open(yaml_path, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
-    generate_pdf(data, pdf_path)
+    generate_pdf(data, "en", ROOT / "CV_EN.pdf")
+    generate_pdf(data, "es", ROOT / "CV_ES.pdf")
     update_readme(data, readme_path)
-    print("\nDone. Commit CV.pdf and README.md to publish.")
+    print("\nDone. Commit CV_EN.pdf, CV_ES.pdf and README.md to publish.")

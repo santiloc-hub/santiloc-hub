@@ -3,40 +3,65 @@ meta:
   email: santiloc23456@gmail.com
   linkedin: https://www.linkedin.com/in/santiago-montaña/
   phone: "+57-3105508171"
-  tagline: Data Scientist & AI Solutions Builder | Electronic Engineer
+  tagline_en: Data Scientist & AI Solutions Builder | Electronic Engineer
+  tagline_es: Científico de Datos & Constructor de Soluciones IA | Ingeniero Electrónico
   readiness_status: "Ready for the next phase — Data Engineer & AI Developer"
 
-summary: >
+summary_en: >
   Data Scientist with a background in Electronic Engineering and a specialization in
   Strategic Data Analytics. Experienced in data pipeline engineering (dbt, Meltano,
   Airflow), cloud data warehousing (Snowflake), machine learning, conversational AI,
   and building AI-powered solutions with Python, SQL, and modern LLMs including Claude.
   Passionate about automating processes and communicating data-driven insights.
 
+summary_es: >
+  Científico de Datos con formación en Ingeniería Electrónica y especialización en
+  Analítica Estratégica de Datos. Experiencia en ingeniería de pipelines de datos
+  (dbt, Meltano, Airflow), almacenamiento en la nube con Snowflake, machine learning,
+  IA conversacional y construcción de soluciones con Python, SQL y LLMs modernos
+  incluyendo Claude. Apasionado por la automatización de procesos y la comunicación
+  de insights basados en datos.
+
 experience:
-  - title: Auxiliar de Desarrollo
+  - title_en: Development Assistant
+    title_es: Auxiliar de Desarrollo
     company: CIM DATA IA
     location: Boyacá
     period: "May 2025 – Present"
-    description: >
+    description_en: >
       Supporting data science solutions at a banking entity, focused on AI automation
       and improving customer experience.
-    bullets:
+    description_es: >
+      Apoyo en soluciones de ciencia de datos en una entidad bancaria, enfocado en
+      automatización con IA y mejora de la experiencia del cliente.
+    bullets_en:
       - Correction and improvement of banking chatbots, optimizing response accuracy and client interaction.
       - Collaboration on an AI voice assistant for automated loan verification using Python, ElevenLabs, and third-party APIs.
       - Implementation of process automations and operational data analysis to drive technological efficiency.
+    bullets_es:
+      - Corrección y mejora de chatbots bancarios, optimizando la precisión de respuestas e interacción con clientes.
+      - Colaboración en el desarrollo de un asistente de voz con IA para verificación automatizada de préstamos usando Python, ElevenLabs y APIs de terceros.
+      - Implementación de automatizaciones de procesos y análisis de datos operativos para impulsar la eficiencia tecnológica.
 
-  - title: Practicante
+  - title_en: Intern
+    title_es: Practicante
     company: HOLCIM S.A.
     location: Nobsa, Boyacá
     period: "May 2024 – Nov 2024"
-    description: >
+    description_en: >
       Gained hands-on experience with industrial electrical systems and data automation
       in a large-scale manufacturing environment.
-    bullets:
+    description_es: >
+      Adquirí experiencia práctica con sistemas eléctricos industriales y automatización
+      de datos en un entorno de manufactura a gran escala.
+    bullets_en:
       - Automated operational data collection and processing using Google Apps Script and Python.
       - Designed and implemented a central database to improve asset traceability and organization.
       - Created interactive dashboards in Looker Studio for KPI tracking and equipment performance analysis.
+    bullets_es:
+      - Automatización de la recolección y procesamiento de datos operativos mediante Google Apps Script y Python.
+      - Diseño e implementación de una base de datos central para mejorar la trazabilidad y organización de activos.
+      - Creación de dashboards interactivos en Looker Studio para seguimiento de KPIs y análisis de rendimiento de equipos.
 
 skills:
   data_engineering:
@@ -137,38 +162,56 @@ courses:
     date: "Sep 2024"
 
 projects:
-  - name: Dashboard para Soporte Técnico
-    description: >
+  - name_en: Technical Support Dashboard
+    name_es: Dashboard para Soporte Técnico
+    description_en: >
       Integration of Google Forms data with Google Sheets and interactive
       dashboards in Looker Studio for the support area.
+    description_es: >
+      Integración de datos de Google Forms con Google Sheets y creación de
+      dashboards interactivos en Looker Studio para el área de soporte.
     tools: [Google Sheets, Looker Studio, Python]
 
-  - name: Sistema POS para Negocio Personal
-    description: >
+  - name_en: POS System for Personal Business
+    name_es: Sistema POS para Negocio Personal
+    description_en: >
       Point-of-sale system for sales management and near-real-time inventory
       flow tracking.
+    description_es: >
+      Sistema de punto de venta para gestión de ventas y seguimiento del flujo
+      de inventario en tiempo casi real.
     tools: [Python, SQLite, Google Sheets, Kivy, GitHub]
 
-  - name: Clasificación y Despliegue de Modelos de Autos
-    description: >
+  - name_en: Car Model Classification & Deployment
+    name_es: Clasificación y Despliegue de Modelos de Autos
+    description_en: >
       End-to-end vehicle classification model deployed as a web application,
       automating the pipeline from preprocessing to production.
+    description_es: >
+      Modelo de clasificación de vehículos desplegado como aplicación web,
+      automatizando el flujo desde el preprocesamiento hasta producción.
     tools: [scikit-learn, pandas, Flask, Streamlit, GitHub]
 
-  - name: Análisis Predictivo de Bitcoin
-    description: >
+  - name_en: Bitcoin Predictive Analysis
+    name_es: Análisis Predictivo de Bitcoin
+    description_en: >
       Predictive model based on news sentiment analysis and Monte Carlo
       simulations to estimate market behavior and support investment decisions.
+    description_es: >
+      Modelo predictivo basado en análisis de sentimiento de noticias y
+      simulaciones de Monte Carlo para estimar el comportamiento del mercado.
     tools: [Python, Scikit-learn, Monte Carlo, Jupyter Notebook]
 
 education:
-  - degree: Especialización en Analítica Estratégica de Datos
+  - degree_en: Specialization in Strategic Data Analytics
+    degree_es: Especialización en Analítica Estratégica de Datos
     institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
 
-  - degree: Ingeniería Electrónica
+  - degree_en: Electronic Engineering
+    degree_es: Ingeniería Electrónica
     institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
 
-languages:
+spoken_languages:
   - lang: Spanish
     level: C2
   - lang: English

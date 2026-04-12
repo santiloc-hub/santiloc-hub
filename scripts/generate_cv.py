@@ -405,7 +405,8 @@ def update_readme(data: dict, readme_path: Path) -> None:
 
     badge = (
         f"{README_START}\n"
-        f"<!-- status: {status} | cv_en: ./CV_EN.pdf | cv_es: ./CV_ES.pdf | updated: {now} -->\n"
+        f"<!-- status: {status} | updated: {now} -->\n"
+        f'📄 **CV / Resume:** &nbsp;[🇬🇧 English](./CV_EN.pdf) &nbsp;·&nbsp; [🇨🇴 Español](./CV_ES.pdf)\n'
         f"{README_END}"
     )
 

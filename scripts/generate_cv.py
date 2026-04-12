@@ -2,7 +2,7 @@
 """
 CV Generator
 ------------
-Reads cv_data.yaml → generates CV_EN.pdf + CV_ES.pdf and updates README.md badge.
+Reads cv_data.yaml -> generates CV_EN.pdf + CV_ES.pdf and updates README.md badge.
 
 Usage:
   pip install weasyprint pyyaml
@@ -23,17 +23,18 @@ ROOT = Path(__file__).parent.parent
 
 LABELS = {
     "en": {
-        "summary":     "Professional Summary",
-        "experience":  "Work Experience",
-        "skills":      "Technical Skills",
-        "projects":    "Featured Projects",
-        "education":   "Education",
-        "lang":        "Languages",
-        "courses":     "Courses & Certifications",
+        "summary":    "Summary",
+        "experience": "Experience",
+        "skills":     "Skills",
+        "projects":   "Projects",
+        "education":  "Education",
+        "lang":       "Languages",
+        "courses":    "Courses & Certifications",
+        "tools":      "Tools",
         "skills_map": {
             "data_engineering":  "Data Engineering & Orchestration",
             "ml_ai":             "Machine Learning & AI",
-            "conversational_ai": "AI Conversational & Chatbots",
+            "conversational_ai": "Conversational AI & Chatbots",
             "languages":         "Programming Languages",
             "cloud_devops":      "Cloud & DevOps",
             "databases":         "Databases",
@@ -41,13 +42,14 @@ LABELS = {
         },
     },
     "es": {
-        "summary":     "Perfil Profesional",
-        "experience":  "Experiencia Laboral",
-        "skills":      "Habilidades Técnicas",
-        "projects":    "Proyectos Destacados",
-        "education":   "Educación",
-        "lang":        "Idiomas",
-        "courses":     "Cursos y Certificaciones",
+        "summary":    "Perfil",
+        "experience": "Experiencia",
+        "skills":     "Habilidades",
+        "projects":   "Proyectos",
+        "education":  "Educación",
+        "lang":       "Idiomas",
+        "courses":    "Cursos y Certificaciones",
+        "tools":      "Herramientas",
         "skills_map": {
             "data_engineering":  "Ingeniería de Datos y Orquestación",
             "ml_ai":             "Machine Learning e IA",
@@ -61,7 +63,7 @@ LABELS = {
 }
 
 # ---------------------------------------------------------------------------
-# HTML / CSS template
+# HTML template  — clean single-column, ATS-friendly
 # ---------------------------------------------------------------------------
 
 HTML_TEMPLATE = """<!DOCTYPE html>
@@ -70,161 +72,261 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <style>
   @page {{
-    margin: 14mm 16mm 14mm 16mm;
+    margin: 16mm 18mm 14mm 18mm;
     size: A4;
   }}
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   body {{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 9.5pt;
-    color: #1f2937;
-    line-height: 1.45;
+    color: #1a1a1a;
+    line-height: 1.5;
+    background: #ffffff;
   }}
 
   /* ── Header ── */
   .header {{
-    background: #1e3a8a;
-    color: #ffffff;
-    padding: 13px 16px 11px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1e3a5f;
   }}
   .header h1 {{
-    font-size: 21pt;
+    font-size: 20pt;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    color: #1e3a5f;
+    letter-spacing: 0.2px;
     line-height: 1.1;
   }}
   .header .tagline {{
     font-size: 9.5pt;
-    color: #93c5fd;
-    margin-top: 2px;
+    color: #4a5568;
+    margin-top: 3px;
   }}
   .header .contacts {{
-    margin-top: 6px;
+    margin-top: 5px;
     font-size: 8.5pt;
-    color: #dbeafe;
+    color: #4a5568;
     display: flex;
-    gap: 18px;
+    gap: 16px;
     flex-wrap: wrap;
   }}
+  .header .contacts span {{ display: flex; align-items: center; gap: 3px; }}
 
-  /* ── Sections ── */
-  .section {{ margin-top: 9px; }}
+  /* ── Section ── */
+  .section {{ margin-top: 11px; }}
   .section-title {{
-    font-size: 9.5pt;
+    font-size: 9pt;
     font-weight: 700;
-    color: #1e3a8a;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    border-bottom: 1.5px solid #3b82f6;
+    letter-spacing: 1.2px;
+    color: #1e3a5f;
+    border-bottom: 1px solid #1e3a5f;
     padding-bottom: 2px;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
   }}
 
   /* ── Summary ── */
-  .summary {{ font-size: 9pt; color: #374151; }}
+  .summary {{
+    font-size: 9pt;
+    color: #2d3748;
+    text-align: justify;
+  }}
 
   /* ── Experience ── */
-  .job {{ margin-bottom: 8px; }}
-  .job-row {{
+  .job {{ margin-bottom: 9px; }}
+  .job:last-child {{ margin-bottom: 0; }}
+  .job-header {{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
   }}
-  .job-title {{ font-weight: 700; font-size: 9.5pt; color: #1e3a8a; }}
-  .job-company {{ font-size: 9pt; color: #4b5563; font-style: italic; }}
-  .job-date {{ font-size: 8.5pt; color: #6b7280; white-space: nowrap; }}
-  .job-desc {{ font-size: 8.5pt; color: #4b5563; margin: 2px 0 3px; }}
-  .job ul {{ margin-left: 13px; }}
-  .job ul li {{ font-size: 8.5pt; color: #374151; margin-bottom: 1.5px; }}
+  .job-title {{
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #1a1a1a;
+  }}
+  .job-date {{
+    font-size: 8.5pt;
+    color: #4a5568;
+    white-space: nowrap;
+  }}
+  .job-sub {{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }}
+  .job-company {{
+    font-size: 9pt;
+    color: #2d3748;
+    font-style: italic;
+  }}
+  .job ul {{
+    margin-left: 14px;
+  }}
+  .job ul li {{
+    font-size: 9pt;
+    color: #2d3748;
+    margin-bottom: 2px;
+  }}
 
   /* ── Skills ── */
-  .skills-grid {{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 20px;
+  .skills-table {{
+    width: 100%;
+    border-collapse: collapse;
   }}
-  .skill-row {{ font-size: 8.8pt; }}
-  .skill-label {{ font-weight: 700; color: #1e3a8a; }}
-  .skill-items {{ color: #374151; }}
-
-  /* ── Two-column lower body ── */
-  .two-col {{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 20px;
-    margin-top: 9px;
+  .skills-table tr {{ vertical-align: top; }}
+  .skills-table td {{
+    font-size: 9pt;
+    padding: 2px 0;
+    color: #2d3748;
+  }}
+  .skills-table td.label {{
+    font-weight: 700;
+    color: #1a1a1a;
+    width: 42mm;
+    white-space: nowrap;
+    padding-right: 8px;
+  }}
+  .skills-table td.label::after {{
+    content: ":";
   }}
 
   /* ── Projects ── */
-  .project {{ margin-bottom: 6px; }}
-  .project-name {{ font-weight: 700; font-size: 9pt; color: #1e3a8a; }}
-  .project-desc {{ font-size: 8.5pt; color: #374151; margin: 1px 0; }}
-  .project-tools {{ font-size: 8pt; color: #6b7280; }}
+  .project {{ margin-bottom: 7px; }}
+  .project:last-child {{ margin-bottom: 0; }}
+  .project-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }}
+  .project-name {{
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #1a1a1a;
+  }}
+  .project-tools {{
+    font-size: 8.5pt;
+    color: #4a5568;
+    font-style: italic;
+    white-space: nowrap;
+    margin-left: 8px;
+  }}
+  .project-desc {{
+    font-size: 9pt;
+    color: #2d3748;
+    margin-top: 1px;
+  }}
 
-  /* ── Education / Languages ── */
-  .edu-item {{ margin-bottom: 4px; font-size: 9pt; }}
-  .edu-degree {{ font-weight: 700; color: #1f2937; }}
-  .edu-inst {{ color: #6b7280; font-size: 8.5pt; }}
+  /* ── Education ── */
+  .edu-item {{ margin-bottom: 5px; }}
+  .edu-item:last-child {{ margin-bottom: 0; }}
+  .edu-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }}
+  .edu-degree {{
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #1a1a1a;
+  }}
+  .edu-inst {{
+    font-size: 9pt;
+    color: #2d3748;
+    font-style: italic;
+  }}
+
+  /* ── Languages ── */
+  .lang-row {{
+    display: flex;
+    gap: 20px;
+  }}
+  .lang-item {{
+    font-size: 9pt;
+    color: #2d3748;
+  }}
+  .lang-item strong {{
+    color: #1a1a1a;
+  }}
 
   /* ── Courses ── */
   .courses-grid {{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3px 20px;
+    gap: 2px 16px;
   }}
-  .course {{ font-size: 8.5pt; }}
-  .course-name {{ font-weight: 600; color: #1f2937; }}
-  .course-meta {{ color: #6b7280; }}
+  .course {{
+    font-size: 8.5pt;
+    color: #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }}
+  .course-name {{ flex: 1; }}
+  .course-date {{
+    color: #718096;
+    font-size: 8pt;
+    white-space: nowrap;
+    margin-left: 6px;
+  }}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <h1>{name}</h1>
   <div class="tagline">{tagline}</div>
   <div class="contacts">
-    <span>&#9993; {email}</span>
-    <span>&#128241; {phone}</span>
-    <span>&#128279; {linkedin}</span>
+    <span>{email}</span>
+    <span>{phone}</span>
+    <span>{linkedin}</span>
   </div>
 </div>
 
+<!-- SUMMARY -->
 <div class="section">
   <div class="section-title">{lbl_summary}</div>
   <div class="summary">{summary}</div>
 </div>
 
+<!-- EXPERIENCE -->
 <div class="section">
   <div class="section-title">{lbl_experience}</div>
   {experience_html}
 </div>
 
+<!-- SKILLS -->
 <div class="section">
   <div class="section-title">{lbl_skills}</div>
-  <div class="skills-grid">
+  <table class="skills-table">
     {skills_html}
-  </div>
+  </table>
 </div>
 
-<div class="two-col">
-  <div>
-    <div class="section">
-      <div class="section-title">{lbl_projects}</div>
-      {projects_html}
-    </div>
-  </div>
-  <div>
-    <div class="section">
-      <div class="section-title">{lbl_education}</div>
-      {education_html}
-    </div>
-    <div class="section" style="margin-top:8px">
-      <div class="section-title">{lbl_lang}</div>
-      {languages_html}
-    </div>
-  </div>
+<!-- PROJECTS -->
+<div class="section">
+  <div class="section-title">{lbl_projects}</div>
+  {projects_html}
 </div>
 
+<!-- EDUCATION + LANGUAGES side by side via table -->
+<table style="width:100%; border-collapse:collapse; margin-top:11px;">
+<tr style="vertical-align:top;">
+  <td style="width:60%; padding-right:12px;">
+    <div class="section-title">{lbl_education}</div>
+    {education_html}
+  </td>
+  <td style="width:40%;">
+    <div class="section-title">{lbl_lang}</div>
+    {languages_html}
+  </td>
+</tr>
+</table>
+
+<!-- COURSES -->
 <div class="section">
   <div class="section-title">{lbl_courses}</div>
   <div class="courses-grid">
@@ -234,7 +336,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
 </body>
 </html>"""
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -248,7 +349,6 @@ def _esc(text: str) -> str:
 
 
 def _t(obj: dict, key: str, lang: str) -> str:
-    """Get lang-specific value: obj[key_en] or obj[key_es], fallback to obj[key]."""
     return obj.get(f"{key}_{lang}") or obj.get(key, "")
 
 
@@ -256,58 +356,58 @@ def _t(obj: dict, key: str, lang: str) -> str:
 # Renderers
 # ---------------------------------------------------------------------------
 
+def render_skills(skills: dict, lang: str) -> str:
+    skill_map = LABELS[lang]["skills_map"]
+    rows = []
+    for key, label in skill_map.items():
+        if key not in skills:
+            continue
+        items = ", ".join(_esc(s) for s in skills[key])
+        rows.append(
+            f"<tr>"
+            f'<td class="label">{label}</td>'
+            f"<td>{items}</td>"
+            f"</tr>"
+        )
+    return "\n".join(rows)
+
+
 def render_experience(jobs: list, lang: str) -> str:
     parts = []
     for job in jobs:
-        title = _t(job, "title", lang)
-        desc  = _t(job, "description", lang).strip()
+        title   = _t(job, "title", lang)
         bullets = job.get(f"bullets_{lang}") or job.get("bullets", [])
         bullet_html = "".join(f"<li>{_esc(b)}</li>" for b in bullets)
-        desc_html = f'<div class="job-desc">{_esc(desc)}</div>' if desc else ""
         parts.append(f"""
         <div class="job">
-          <div class="job-row">
-            <span>
-              <span class="job-title">{_esc(title)}</span>
-              &nbsp;—&nbsp;
-              <span class="job-company">{_esc(job['company'])}, {_esc(job['location'])}</span>
-            </span>
+          <div class="job-header">
+            <span class="job-title">{_esc(title)}</span>
             <span class="job-date">{_esc(job['period'])}</span>
           </div>
-          {desc_html}
+          <div class="job-sub">
+            <span class="job-company">{_esc(job['company'])}, {_esc(job['location'])}</span>
+          </div>
           <ul>{bullet_html}</ul>
         </div>""")
     return "\n".join(parts)
 
 
-def render_skills(skills: dict, lang: str) -> str:
-    skill_map = LABELS[lang]["skills_map"]
-    parts = []
-    for key, label in skill_map.items():
-        if key in skills:
-            items = ", ".join(_esc(s) for s in skills[key])
-            parts.append(
-                f'<div class="skill-row">'
-                f'<span class="skill-label">{label}:</span> '
-                f'<span class="skill-items">{items}</span>'
-                f'</div>'
-            )
-    return "\n".join(parts)
-
-
 def render_projects(projects: list, lang: str) -> str:
+    lbl_tools = LABELS[lang]["tools"]
     parts = []
     for p in projects:
         name  = _t(p, "name", lang)
         desc  = _t(p, "description", lang).strip()
         tools = ", ".join(_esc(t) for t in p.get("tools", []))
-        tools_label = "Tools" if lang == "en" else "Herramientas"
-        parts.append(f"""
-        <div class="project">
-          <div class="project-name">{_esc(name)}</div>
-          <div class="project-desc">{_esc(desc)}</div>
-          <div class="project-tools">{tools_label}: {tools}</div>
-        </div>""")
+        parts.append(
+            f'<div class="project">'
+            f'<div class="project-header">'
+            f'<span class="project-name">{_esc(name)}</span>'
+            f'<span class="project-tools">{lbl_tools}: {tools}</span>'
+            f'</div>'
+            f'<div class="project-desc">{_esc(desc)}</div>'
+            f'</div>'
+        )
     return "\n".join(parts)
 
 
@@ -325,25 +425,21 @@ def render_education(edu: list, lang: str) -> str:
 
 
 def render_languages(langs: list) -> str:
-    parts = []
-    for lang in langs:
-        parts.append(
-            f'<div class="edu-item">'
-            f'{_esc(lang["lang"])} '
-            f'<span style="color:#6b7280">({_esc(lang["level"])})</span>'
-            f'</div>'
-        )
-    return "\n".join(parts)
+    items = "".join(
+        f'<div class="lang-item"><strong>{_esc(l["lang"])}</strong> — {_esc(l["level"])}</div>'
+        for l in langs
+    )
+    return items
 
 
 def render_courses(courses: list) -> str:
     parts = []
     for c in courses:
-        date = f" ({_esc(c['date'])})" if c.get("date") else ""
+        date = _esc(c["date"]) if c.get("date") else ""
         parts.append(
             f'<div class="course">'
             f'<span class="course-name">{_esc(c["name"])}</span>'
-            f' <span class="course-meta">— {_esc(c["platform"])}{date}</span>'
+            f'<span class="course-date">{date}</span>'
             f'</div>'
         )
     return "\n".join(parts)
@@ -364,26 +460,26 @@ def generate_pdf(data: dict, lang: str, output_path: Path) -> None:
     meta = data["meta"]
 
     html = HTML_TEMPLATE.format(
-        lang_code        = lang,
-        name             = _esc(meta["name"]),
-        tagline          = _esc(meta[f"tagline_{lang}"]),
-        email            = _esc(meta["email"]),
-        phone            = _esc(meta["phone"]),
-        linkedin         = _esc(meta["linkedin"]),
-        lbl_summary      = lbl["summary"],
-        lbl_experience   = lbl["experience"],
-        lbl_skills       = lbl["skills"],
-        lbl_projects     = lbl["projects"],
-        lbl_education    = lbl["education"],
-        lbl_lang         = lbl["lang"],
-        lbl_courses      = lbl["courses"],
-        summary          = _esc(data[f"summary_{lang}"].strip()),
-        experience_html  = render_experience(data["experience"], lang),
-        skills_html      = render_skills(data["skills"], lang),
-        projects_html    = render_projects(data["projects"], lang),
-        education_html   = render_education(data["education"], lang),
-        languages_html   = render_languages(data["spoken_languages"]),
-        courses_html     = render_courses(data["courses"]),
+        lang_code       = lang,
+        name            = _esc(meta["name"]),
+        tagline         = _esc(meta[f"tagline_{lang}"]),
+        email           = _esc(meta["email"]),
+        phone           = _esc(meta["phone"]),
+        linkedin        = _esc(meta["linkedin"]),
+        lbl_summary     = lbl["summary"],
+        lbl_experience  = lbl["experience"],
+        lbl_skills      = lbl["skills"],
+        lbl_projects    = lbl["projects"],
+        lbl_education   = lbl["education"],
+        lbl_lang        = lbl["lang"],
+        lbl_courses     = lbl["courses"],
+        summary         = _esc(data[f"summary_{lang}"].strip()),
+        experience_html = render_experience(data["experience"], lang),
+        skills_html     = render_skills(data["skills"], lang),
+        projects_html   = render_projects(data["projects"], lang),
+        education_html  = render_education(data["education"], lang),
+        languages_html  = render_languages(data["spoken_languages"]),
+        courses_html    = render_courses(data["courses"]),
     )
 
     HTML(string=html, base_url=str(ROOT)).write_pdf(str(output_path))

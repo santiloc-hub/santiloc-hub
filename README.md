@@ -3,7 +3,7 @@
 
 <!--CV_STATUS:start-->
 > **Status:** ✅ Ready for the next phase — Data Engineer & AI Developer  
-> 📄 [Download CV (PDF)](./CV.pdf) &nbsp;·&nbsp; Last updated: April 11, 2026
+> 📄 [Download CV (PDF)](./CV.pdf) &nbsp;·&nbsp; Last updated: April 12, 2026
 <!--CV_STATUS:end-->
 
 ### ⚡ Actividad reciente

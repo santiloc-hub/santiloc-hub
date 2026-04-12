@@ -1,0 +1,175 @@
+meta:
+  name: Santiago Montaña
+  email: santiloc23456@gmail.com
+  linkedin: https://www.linkedin.com/in/santiago-montaña/
+  phone: "+57-3105508171"
+  tagline: Data Scientist & AI Solutions Builder | Electronic Engineer
+  readiness_status: "Ready for the next phase — Data Engineer & AI Developer"
+
+summary: >
+  Data Scientist with a background in Electronic Engineering and a specialization in
+  Strategic Data Analytics. Experienced in data pipeline engineering (dbt, Meltano,
+  Airflow), cloud data warehousing (Snowflake), machine learning, conversational AI,
+  and building AI-powered solutions with Python, SQL, and modern LLMs including Claude.
+  Passionate about automating processes and communicating data-driven insights.
+
+experience:
+  - title: Auxiliar de Desarrollo
+    company: CIM DATA IA
+    location: Boyacá
+    period: "May 2025 – Present"
+    description: >
+      Supporting data science solutions at a banking entity, focused on AI automation
+      and improving customer experience.
+    bullets:
+      - Correction and improvement of banking chatbots, optimizing response accuracy and client interaction.
+      - Collaboration on an AI voice assistant for automated loan verification using Python, ElevenLabs, and third-party APIs.
+      - Implementation of process automations and operational data analysis to drive technological efficiency.
+
+  - title: Practicante
+    company: HOLCIM S.A.
+    location: Nobsa, Boyacá
+    period: "May 2024 – Nov 2024"
+    description: >
+      Gained hands-on experience with industrial electrical systems and data automation
+      in a large-scale manufacturing environment.
+    bullets:
+      - Automated operational data collection and processing using Google Apps Script and Python.
+      - Designed and implemented a central database to improve asset traceability and organization.
+      - Created interactive dashboards in Looker Studio for KPI tracking and equipment performance analysis.
+
+skills:
+  data_engineering:
+    - Snowflake
+    - dbt (SQL transformations)
+    - Meltano (ELT extraction)
+    - Apache Airflow (DAG orchestration)
+    - ETL/ELT pipelines
+    - Data modeling
+
+  ml_ai:
+    - Scikit-learn
+    - TensorFlow
+    - Prompt Engineering
+    - Claude AI (context & code assistance)
+    - LLM integration
+    - Predictive modeling
+
+  conversational_ai:
+    - Chatbot development & optimization
+    - ElevenLabs (Voice AI)
+    - NLP
+    - Conversational UX design
+
+  languages:
+    - Python (NumPy, pandas, Matplotlib, Scikit-learn, TensorFlow)
+    - SQL
+    - JavaScript / TypeScript (ES6+)
+    - C++
+
+  cloud_devops:
+    - AWS (EC2, S3, IAM)
+    - Git & GitHub
+    - GitHub Actions
+
+  databases:
+    - Snowflake
+    - PostgreSQL
+    - MySQL
+    - SQLite
+
+  visualization:
+    - Power BI
+    - Tableau
+    - Looker Studio
+
+courses:
+  - name: Data Scientist con Python
+    platform: Platzi
+    date: "Apr 2025"
+
+  - name: Introducción a Machine Learning
+    platform: Platzi
+    date: "Jan 2025"
+
+  - name: Regresión Lineal con Python y scikit-learn
+    platform: Platzi
+    date: "Feb 2025"
+
+  - name: Decision Trees y Random Forest
+    platform: Platzi
+    date: "Mar 2025"
+
+  - name: Crear tus Proyectos de Ciencia de Datos
+    platform: Platzi
+    date: "Feb 2025"
+
+  - name: Tableau
+    platform: Platzi
+    date: "Mar 2025"
+
+  - name: Power BI
+    platform: Platzi
+    date: ""
+
+  - name: Estadística Descriptiva para Data Science
+    platform: Platzi
+    date: "Dec 2024"
+
+  - name: Cálculo Diferencial para Data Science
+    platform: Platzi
+    date: "Jan 2025"
+
+  - name: Python
+    platform: Platzi
+    date: "Sep 2024"
+
+  - name: Git y GitHub
+    platform: Platzi
+    date: "Jan 2025"
+
+  - name: Jupyter Notebooks y Anaconda
+    platform: Platzi
+    date: "Nov 2024"
+
+  - name: Bases de Datos con SQL
+    platform: Platzi
+    date: "Sep 2024"
+
+projects:
+  - name: Dashboard para Soporte Técnico
+    description: >
+      Integration of Google Forms data with Google Sheets and interactive
+      dashboards in Looker Studio for the support area.
+    tools: [Google Sheets, Looker Studio, Python]
+
+  - name: Sistema POS para Negocio Personal
+    description: >
+      Point-of-sale system for sales management and near-real-time inventory
+      flow tracking.
+    tools: [Python, SQLite, Google Sheets, Kivy, GitHub]
+
+  - name: Clasificación y Despliegue de Modelos de Autos
+    description: >
+      End-to-end vehicle classification model deployed as a web application,
+      automating the pipeline from preprocessing to production.
+    tools: [scikit-learn, pandas, Flask, Streamlit, GitHub]
+
+  - name: Análisis Predictivo de Bitcoin
+    description: >
+      Predictive model based on news sentiment analysis and Monte Carlo
+      simulations to estimate market behavior and support investment decisions.
+    tools: [Python, Scikit-learn, Monte Carlo, Jupyter Notebook]
+
+education:
+  - degree: Especialización en Analítica Estratégica de Datos
+    institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
+
+  - degree: Ingeniería Electrónica
+    institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
+
+languages:
+  - lang: Spanish
+    level: C2
+  - lang: English
+    level: B1

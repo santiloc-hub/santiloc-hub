@@ -23,11 +23,29 @@ summary_es: >
   de insights basados en datos.
 
 experience:
+  - title_en: Junior Data Scientist
+    title_es: Científico de Datos Junior
+    company: CIM DATA IA
+    location: Boyacá
+    period: "Jan 2026 – Present"
+    description_en: >
+      Developed conversational AI models consuming MCPs, and worked on an agent for enterprise infrastructure deployment. Used AWS, Snowflake, Airflow, and data pipelines.
+    description_es: >
+      Desarrollo de modelos de IA conversacional consumiendo MCPs y creación de un agente para despliegue de infraestructura empresarial. Uso de AWS, Snowflake, Airflow y pipelines de datos.
+    bullets_en:
+      - Developed conversational AI models integrating MCPs for advanced interactions.
+      - Built an autonomous agent to automate enterprise infrastructure deployment.
+      - Engineered data pipelines using AWS, Snowflake, and Apache Airflow.
+    bullets_es:
+      - Desarrollo de modelos de IA conversacional integrando MCPs para interacciones avanzadas.
+      - Creación de un agente autónomo para automatizar el despliegue de infraestructura empresarial.
+      - Diseño e implementación de pipelines de datos utilizando AWS, Snowflake y Apache Airflow.
+
   - title_en: Development Assistant
     title_es: Auxiliar de Desarrollo
     company: CIM DATA IA
     location: Boyacá
-    period: "May 2025 – Present"
+    period: "May 2025 – Dec 2025"
     description_en: >
       Supporting data science solutions at a banking entity, focused on AI automation
       and improving customer experience.

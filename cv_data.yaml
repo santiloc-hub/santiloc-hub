@@ -2,118 +2,200 @@ meta:
   name: Santiago Montaña
   email: santiloc23456@gmail.com
   linkedin: https://www.linkedin.com/in/santiago-montaña/
-  phone: "+57-3105508171"
-  tagline_en: Data Scientist & AI Solutions Builder | Electronic Engineer
-  tagline_es: Científico de Datos & Constructor de Soluciones IA | Ingeniero Electrónico
-  readiness_status: "Ready for the next phase — Data Engineer & AI Developer"
+  github: https://github.com/santiloc-hub
+  github_username: santiloc-hub
+  portal_url: https://santiloc-hub.github.io/santiloc-hub/
+  platzi: https://platzi.com/p/santiloc23456
+  phone: "+57 310 550 8171"
+  location_es: "Bogotá / Boyacá, Colombia · Híbrido / Remoto"
+  location_en: "Bogotá / Boyacá, Colombia · Hybrid / Remote"
+  tagline_en: Data Scientist | Data & AI Engineer | Conversational AI & Cloud Operations
+  tagline_es: Científico de Datos | Ingeniero de Datos e IA | IA Conversacional & Operaciones Cloud
+  readiness_status: "Building Data Pipelines, ML Models & Autonomous AI Agents @ CIM DATA IA"
+  hero_badges:
+    - Python
+    - SQL
+    - Snowflake
+    - Apache Airflow
+    - dbt
+    - AWS & Terraform
+    - Scikit-learn & MLflow
+    - MCP & AI Agents
+    - FastAPI
+  stats:
+    - value: "3"
+      label_es: "Roles en Datos, ML e IA"
+      label_en: "Roles in Data, ML & AI"
+    - value: "15+"
+      label_es: "Pipelines, Agentes & Modelos"
+      label_en: "Pipelines, Agents & Models"
+    - value: "13+"
+      label_es: "Certificaciones Verificadas"
+      label_en: "Verified Certifications"
+    - value: "100%"
+      label_es: "Cloud & IaC Reproducible"
+      label_en: "Reproducible Cloud & IaC"
 
 summary_en: >
-  Data Scientist with a background in Electronic Engineering and a specialization in
-  Strategic Data Analytics. Experienced in data pipeline engineering (dbt, Meltano,
-  Airflow), cloud data warehousing (Snowflake), machine learning, conversational AI,
-  and building AI-powered solutions with Python, SQL, and modern LLMs including Claude.
-  Passionate about automating processes and communicating data-driven insights.
+  Data Scientist and Data & AI Engineer with a background in Electronic Engineering and a
+  Specialization in Strategic Data Analytics (UPTC). Experienced in end-to-end data pipeline
+  engineering (Snowflake, Apache Airflow, dbt, Meltano), predictive modeling and classification
+  algorithms (Random Forest, XGBoost, Monte Carlo quantitative simulations, MLflow), conversational AI
+  solutions (LLMs, autonomous agents, Model Context Protocol - MCP, ElevenLabs voice AI), and
+  cloud infrastructure provisioning on AWS using Terraform (IaC), Docker, and FastAPI under CI/CD.
 
 summary_es: >
-  Científico de Datos con formación en Ingeniería Electrónica y especialización en
-  Analítica Estratégica de Datos. Experiencia en ingeniería de pipelines de datos
-  (dbt, Meltano, Airflow), almacenamiento en la nube con Snowflake, machine learning,
-  IA conversacional y construcción de soluciones con Python, SQL y LLMs modernos
-  incluyendo Claude. Apasionado por la automatización de procesos y la comunicación
-  de insights basados en datos.
+  Científico de Datos e Ingeniero de Datos e IA con formación en Ingeniería Electrónica y
+  Especialización en Analítica Estratégica de Datos (UPTC). Experiencia demostrada en el diseño
+  y orquestación de pipelines ETL/ELT (Snowflake, Apache Airflow, dbt, Meltano), creación de modelos
+  predictivos y algoritmos de clasificación (Random Forest, XGBoost, simulaciones cuantitativas Monte Carlo,
+  tracking con MLflow), soluciones de IA conversacional (LLMs, agentes autónomos, integración de MCPs
+  y asistentes de voz con ElevenLabs) y despliegue de infraestructura cloud en AWS mediante Terraform (IaC),
+  Docker y FastAPI bajo flujos CI/CD.
 
 experience:
-  - title_en: Junior Data Scientist
-    title_es: Científico de Datos Junior
-    company: CIM DATA IA
-    location: Boyacá
-    period: "Jan 2026 – Present"
+  - id: cim-jr-ds
+    title_en: Junior Data Scientist & AI Developer
+    title_es: Científico de Datos Junior & Desarrollador de IA
+    company: CIM DATA IA — Consultoría de Datos e Inteligencia Artificial
+    location: Boyacá / Remoto, Colombia
+    period: "Ene 2026 – Actualidad"
+    period_en: "Jan 2026 – Present"
+    current: true
+    domain_es: "Ciencia de Datos, Pipelines Cloud, IaC & Agentes IA"
+    domain_en: "Data Science, Cloud Pipelines, IaC & AI Agents"
     description_en: >
-      Developed conversational AI models consuming MCPs, and worked on an agent for enterprise infrastructure deployment. Used AWS, Snowflake, Airflow, and data pipelines.
+      Leading end-to-end data science, ETL/ELT orchestration, conversational AI with MCPs, and cloud
+      infrastructure automation on AWS with Terraform.
     description_es: >
-      Desarrollo de modelos de IA conversacional consumiendo MCPs y creación de un agente para despliegue de infraestructura empresarial. Uso de AWS, Snowflake, Airflow y pipelines de datos.
+      Desarrollo de soluciones de ciencia de datos de punta a punta, orquestación de pipelines cloud,
+      modelos de IA conversacional con MCPs y automatización de infraestructura en AWS con Terraform.
+    tags:
+      - Python
+      - SQL
+      - AWS
+      - Terraform (IaC)
+      - Snowflake
+      - Apache Airflow
+      - dbt
+      - MCP (Model Context Protocol)
+      - Autonomous Agents
+      - Monte Carlo
+      - FastAPI
+      - MLflow
     bullets_en:
-      - Developed conversational AI models integrating MCPs for advanced interactions.
-      - Built an autonomous agent to automate enterprise infrastructure deployment.
-      - Engineered data pipelines using AWS, Snowflake, and Apache Airflow.
+      - Developed predictive models and classification algorithms in Python (scikit-learn, Random Forest, XGBoost) for operational forecasting and prioritization, tracking experiments with MLflow.
+      - Built conversational AI solutions and autonomous agents integrating Model Context Protocol (MCP) to automate enterprise workflows and infrastructure deployment.
+      - Collaborated on cloud infrastructure provisioning and deployment on AWS (EC2, S3, IAM) using Terraform (IaC), ensuring reproducible and scalable environments.
+      - Executed quantitative Monte Carlo simulations and stress tests to validate data design effectiveness, orchestrating ETL/ELT pipelines with Python, SQL, Snowflake, dbt, and Apache Airflow under CI/CD.
     bullets_es:
-      - Desarrollo de modelos de IA conversacional integrando MCPs para interacciones avanzadas.
-      - Creación de un agente autónomo para automatizar el despliegue de infraestructura empresarial.
-      - Diseño e implementación de pipelines de datos utilizando AWS, Snowflake y Apache Airflow.
+      - Desarrollo de modelos predictivos y algoritmos de clasificación en Python (scikit-learn, Random Forest, XGBoost) para pronóstico y priorización operativa, con seguimiento en MLflow.
+      - Implementación de soluciones de IA conversacional y agentes autónomos integrando MCPs (Model Context Protocol) para interacciones avanzadas y despliegue automatizado de infraestructura empresarial.
+      - Colaboración activa en el aprovisionamiento y despliegue de infraestructura en la nube (AWS EC2, S3, IAM) mediante Terraform (IaC), asegurando entornos reproducibles y escalables.
+      - Ejecución de simulaciones cuantitativas (Monte Carlo) y pruebas de estrés para comprobar la eficacia del diseño de datos, orquestando pipelines ETL/ELT con Python, SQL, Snowflake, dbt y Apache Airflow bajo CI/CD.
 
-  - title_en: Development Assistant
-    title_es: Auxiliar de Desarrollo
+  - id: cim-dev-assistant
+    title_en: Development Assistant (Data & AI)
+    title_es: Asistente de Desarrollo (Datos e IA)
     company: CIM DATA IA
-    location: Boyacá
-    period: "May 2025 – Dec 2025"
+    location: Boyacá, Colombia
+    period: "May 2025 – Dic 2025"
+    period_en: "May 2025 – Dec 2025"
+    current: false
+    domain_es: "IA Conversacional Bancaria, Asistentes de Voz & Automatización"
+    domain_en: "Banking Conversational AI, Voice Assistants & Automation"
     description_en: >
-      Supporting data science solutions at a banking entity, focused on AI automation
-      and improving customer experience.
+      Analytical optimization of banking chatbots, AI voice assistants for automated loan verification,
+      and operational data automation.
     description_es: >
-      Apoyo en soluciones de ciencia de datos en una entidad bancaria, enfocado en
-      automatización con IA y mejora de la experiencia del cliente.
+      Optimización analítica de chatbots bancarios, desarrollo de asistentes de voz con IA para
+      verificación de préstamos y automatización de procesos operativos.
+    tags:
+      - Python
+      - ElevenLabs Voice AI
+      - LLMs & NLP
+      - Banking Chatbots
+      - REST APIs
+      - Anaconda & virtualenv
+      - SQL
     bullets_en:
-      - Correction and improvement of banking chatbots, optimizing response accuracy and client interaction.
-      - Collaboration on an AI voice assistant for automated loan verification using Python, ElevenLabs, and third-party APIs.
-      - Implementation of process automations and operational data analysis to drive technological efficiency.
+      - Analytically optimized and tuned banking chatbots and conversational AI flows, measurably improving intent classification accuracy and client response quality.
+      - Collaborated on building an AI voice assistant for automated loan verification in the financial domain using Python, ElevenLabs, and third-party REST APIs.
+      - Implemented operational process automations and standardized experimentation environments using Anaconda and virtualenv to guarantee cross-team portability.
     bullets_es:
-      - Corrección y mejora de chatbots bancarios, optimizando la precisión de respuestas e interacción con clientes.
-      - Colaboración en el desarrollo de un asistente de voz con IA para verificación automatizada de préstamos usando Python, ElevenLabs y APIs de terceros.
-      - Implementación de automatizaciones de procesos y análisis de datos operativos para impulsar la eficiencia tecnológica.
+      - Optimización analítica y ajuste de chatbots y modelos de IA conversacional bancarios, mejorando de forma medible la precisión de clasificación y respuesta a clientes.
+      - Colaboración en el desarrollo de un asistente de voz con IA para verificación automatizada de préstamos en el sector financiero usando Python, ElevenLabs y APIs de terceros.
+      - Implementación de automatizaciones de procesos operativos y estandarización de entornos de experimentación mediante Anaconda y virtualenv, garantizando portabilidad.
 
-  - title_en: Intern
-    title_es: Practicante
-    company: HOLCIM S.A.
-    location: Nobsa, Boyacá
+  - id: holcim-intern
+    title_en: Data & Industrial Operations Automation Intern
+    title_es: Practicante de Datos y Automatización de Operaciones
+    company: HOLCIM S.A. — Operaciones Industriales y Planta
+    location: Nobsa, Boyacá, Colombia
     period: "May 2024 – Nov 2024"
+    period_en: "May 2024 – Nov 2024"
+    current: false
+    domain_es: "Datos Industriales, Automatización & BI Operativo"
+    domain_en: "Industrial Data, Automation & Operational BI"
     description_en: >
-      Gained hands-on experience with industrial electrical systems and data automation
-      in a large-scale manufacturing environment.
+      Automated industrial plant data collection, built a centralized asset traceability database,
+      and designed executive KPI dashboards in Looker Studio.
     description_es: >
-      Adquirí experiencia práctica con sistemas eléctricos industriales y automatización
-      de datos en un entorno de manufactura a gran escala.
+      Automatización de recolección de datos operativos en planta industrial, base de datos centralizada
+      de trazabilidad de activos y tableros interactivos de KPIs en Looker Studio.
+    tags:
+      - Python
+      - Google Apps Script
+      - Looker Studio
+      - Industrial Data
+      - SQL / Databases
+      - KPI Dashboards
     bullets_en:
-      - Automated operational data collection and processing using Google Apps Script and Python.
-      - Designed and implemented a central database to improve asset traceability and organization.
-      - Created interactive dashboards in Looker Studio for KPI tracking and equipment performance analysis.
+      - Automated collection, cleaning, and processing of industrial plant operational data using Python scripts and Google Apps Script.
+      - Designed and implemented a centralized database to improve industrial asset traceability, reliability, and organization.
+      - Built interactive executive dashboards in Looker Studio to monitor plant productivity, equipment availability, and operational KPIs.
     bullets_es:
-      - Automatización de la recolección y procesamiento de datos operativos mediante Google Apps Script y Python.
-      - Diseño e implementación de una base de datos central para mejorar la trazabilidad y organización de activos.
-      - Creación de dashboards interactivos en Looker Studio para seguimiento de KPIs y análisis de rendimiento de equipos.
+      - Automatización de la recolección, depuración y procesamiento de datos operativos en planta industrial mediante scripts en Python y Google Apps Script.
+      - Diseño e implementación de una base de datos centralizada para mejorar la trazabilidad, confiabilidad y organización de activos industriales.
+      - Creación de tableros interactivos de KPIs en Looker Studio para el monitoreo en tiempo real de productividad y disponibilidad de equipos.
 
 skills:
   data_engineering:
-    - Snowflake
-    - dbt (SQL transformations)
-    - Meltano (ELT extraction)
-    - Apache Airflow (DAG orchestration)
-    - ETL/ELT pipelines
-    - Data modeling
+    - Snowflake (Cloud Data Warehouse)
+    - Apache Airflow (DAG Orchestration)
+    - dbt (SQL Transformations)
+    - Meltano (ELT Extraction)
+    - Pipelines ETL / ELT
+    - Modelamiento de Datos & Calidad
 
   ml_ai:
-    - Scikit-learn
-    - TensorFlow
-    - Prompt Engineering
-    - Claude AI (context & code assistance)
-    - LLM integration
-    - Predictive modeling
+    - Scikit-learn (Random Forest, XGBoost, Ensembles)
+    - Simulaciones Cuantitativas (Monte Carlo)
+    - MLflow (Experiment Tracking & MLOps)
+    - TensorFlow & PyTorch
+    - Análisis Estadístico & Validación de Hipótesis
+    - Modelado Predictivo & Clasificación
 
   conversational_ai:
-    - Chatbot development & optimization
-    - ElevenLabs (Voice AI)
-    - NLP
-    - Conversational UX design
-
-  languages:
-    - Python (NumPy, pandas, Matplotlib, Scikit-learn, TensorFlow)
-    - SQL
-    - JavaScript / TypeScript (ES6+)
-    - C++
+    - Model Context Protocol (MCP) Integration
+    - Agentes Autónomos de IA
+    - LLMs (Claude, OpenAI, Prompt Engineering)
+    - ElevenLabs (Asistentes de Voz con IA)
+    - Optimización de Chatbots Bancarios & NLP
 
   cloud_devops:
+    - Terraform (Infrastructure as Code - IaC)
     - AWS (EC2, S3, IAM)
-    - Git & GitHub
-    - GitHub Actions
+    - FastAPI & Pydantic (APIs REST en Producción)
+    - Docker & Entornos Reproducibles (Anaconda, virtualenv)
+    - CI/CD con GitHub Actions & Git
+
+  languages:
+    - Python (pandas, NumPy, SciPy, scikit-learn, Matplotlib)
+    - SQL (Consultas Analíticas, CTEs, Optimización)
+    - R (Estadística & Visualización)
+    - JavaScript / TypeScript (ES6+)
+    - C++
 
   databases:
     - Snowflake
@@ -122,115 +204,147 @@ skills:
     - SQLite
 
   visualization:
+    - Looker Studio
     - Power BI
     - Tableau
-    - Looker Studio
-
-courses:
-  - name: Data Scientist con Python
-    platform: Platzi
-    date: "Apr 2025"
-
-  - name: Introducción a Machine Learning
-    platform: Platzi
-    date: "Jan 2025"
-
-  - name: Regresión Lineal con Python y scikit-learn
-    platform: Platzi
-    date: "Feb 2025"
-
-  - name: Decision Trees y Random Forest
-    platform: Platzi
-    date: "Mar 2025"
-
-  - name: Crear tus Proyectos de Ciencia de Datos
-    platform: Platzi
-    date: "Feb 2025"
-
-  - name: Tableau
-    platform: Platzi
-    date: "Mar 2025"
-
-  - name: Power BI
-    platform: Platzi
-    date: ""
-
-  - name: Estadística Descriptiva para Data Science
-    platform: Platzi
-    date: "Dec 2024"
-
-  - name: Cálculo Diferencial para Data Science
-    platform: Platzi
-    date: "Jan 2025"
-
-  - name: Python
-    platform: Platzi
-    date: "Sep 2024"
-
-  - name: Git y GitHub
-    platform: Platzi
-    date: "Jan 2025"
-
-  - name: Jupyter Notebooks y Anaconda
-    platform: Platzi
-    date: "Nov 2024"
-
-  - name: Bases de Datos con SQL
-    platform: Platzi
-    date: "Sep 2024"
+    - Storytelling con Datos & KPIs Operativos
 
 projects:
-  - name_en: Technical Support Dashboard
-    name_es: Dashboard para Soporte Técnico
+  - name_en: Autonomous News & Media AI Agent
+    name_es: Agente Autónomo de Noticias e IA (news_agent)
+    repo: https://github.com/santiloc-hub/news_agent
+    category: "AI Agents & LLMs"
     description_en: >
-      Integration of Google Forms data with Google Sheets and interactive
-      dashboards in Looker Studio for the support area.
+      Autonomous AI pipeline integrating LLMs and structured workflows for automated news research,
+      synthesis, and multi-channel content generation.
     description_es: >
-      Integración de datos de Google Forms con Google Sheets y creación de
-      dashboards interactivos en Looker Studio para el área de soporte.
-    tools: [Google Sheets, Looker Studio, Python]
+      Pipeline autónomo con IA que integra modelos de lenguaje y flujos estructurados para investigación,
+      síntesis y generación automatizada de contenido informativo.
+    tools: [Python, LLMs, MCP, Autonomous Agents, Automation]
 
-  - name_en: POS System for Personal Business
-    name_es: Sistema POS para Negocio Personal
+  - name_en: Multiclass Vehicle Classification API & Web App
+    name_es: API y Despliegue de Clasificación de Vehículos
+    repo: https://github.com/santiloc-hub/car-classification-deployment
+    category: "MLOps & FastAPI"
     description_en: >
-      Point-of-sale system for sales management and near-real-time inventory
-      flow tracking.
+      End-to-end vehicle classification model serialized and deployed with FastAPI/Flask and Streamlit,
+      including Pydantic validation, logging, and automated testing.
     description_es: >
-      Sistema de punto de venta para gestión de ventas y seguimiento del flujo
-      de inventario en tiempo casi real.
-    tools: [Python, SQLite, Google Sheets, Kivy, GitHub]
+      Modelo multiclase serializado y desplegado en producción con validación Pydantic, logging,
+      pruebas automáticas e interfaz interactiva para inferencia de punta a punta.
+    tools: [Python, scikit-learn, FastAPI, Flask, Streamlit, Pydantic]
 
-  - name_en: Car Model Classification & Deployment
-    name_es: Clasificación y Despliegue de Modelos de Autos
+  - name_en: USD/COP Exchange Rate (TRM) & Crypto Monte Carlo Predictor
+    name_es: Predicción de TRM Dólar y Cripto con Sentimiento & Monte Carlo
+    repo: https://github.com/santiloc-hub/Proyecto_TRM_Dolar
+    category: "Data Science & Quantitative Simulation"
     description_en: >
-      End-to-end vehicle classification model deployed as a web application,
-      automating the pipeline from preprocessing to production.
+      Predictive modeling combining historical time series, real-time news sentiment analysis,
+      and Monte Carlo quantitative simulations to estimate market scenarios.
     description_es: >
-      Modelo de clasificación de vehículos desplegado como aplicación web,
-      automatizando el flujo desde el preprocesamiento hasta producción.
-    tools: [scikit-learn, pandas, Flask, Streamlit, GitHub]
+      Modelado predictivo que combina series históricas, análisis de sentimiento de noticias actuales
+      y simulaciones de Monte Carlo para estimar escenarios de mercado.
+    tools: [Python, Scikit-learn, Monte Carlo, NLP Sentiment, Jupyter Notebook]
 
-  - name_en: Bitcoin Predictive Analysis
-    name_es: Análisis Predictivo de Bitcoin
+  - name_en: Conversational Voice AI Agent (ElevenLabs + LLMs)
+    name_es: Asistente Conversacional de Voz con IA (ElevenLabs)
+    repo: https://github.com/santiloc-hub/eleven_labs_agent_test
+    category: "Conversational AI"
     description_en: >
-      Predictive model based on news sentiment analysis and Monte Carlo
-      simulations to estimate market behavior and support investment decisions.
+      Interactive voice AI agent built with Python and ElevenLabs APIs for low-latency automated
+      verification and natural conversational workflows.
     description_es: >
-      Modelo predictivo basado en análisis de sentimiento de noticias y
-      simulaciones de Monte Carlo para estimar el comportamiento del mercado.
-    tools: [Python, Scikit-learn, Monte Carlo, Jupyter Notebook]
+      Agente interactivo de voz construido con Python y ElevenLabs para flujos conversacionales
+      automatizados de baja latencia y verificación de datos.
+    tools: [Python, ElevenLabs, LLMs, Voice AI, REST APIs]
+
+  - name_en: Supply Chain & Marketplace Analytics (Coomproriente)
+    name_es: Analítica de Cadena de Abastos y Marketplace
+    repo: https://github.com/santiloc-hub/coomproriente-marketplace-analytics
+    category: "Data Analytics & Operations"
+    description_en: >
+      Quantitative modeling of carriers, merchants, and pricing dynamics for supply chain and
+      marketplace operations optimization.
+    description_es: >
+      Modelado analítico de transportistas, comerciantes y dinámica de precios para optimización
+      de operaciones y cadena de abastecimiento.
+    tools: [Python, pandas, SQL, Data Visualization, Operations Analytics]
+
+  - name_en: Customer Churn & Soccer Match Predictive Models
+    name_es: Modelos Predictivos de Churn y Pronóstico Deportivo
+    repo: https://github.com/santiloc-hub/Churn_Prediction
+    category: "Machine Learning"
+    description_en: >
+      Classification ensembles (Decision Trees, Random Forest) and feature engineering pipelines
+      for customer retention and probabilistic match outcome forecasting.
+    description_es: >
+      Ensambles de clasificación (Decision Trees, Random Forest) e ingeniería de características
+      para retención de clientes y pronóstico probabilístico.
+    tools: [Python, scikit-learn, pandas, Matplotlib, Classification]
 
 education:
   - degree_en: Specialization in Strategic Data Analytics
     degree_es: Especialización en Analítica Estratégica de Datos
     institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
+    period: "Posgrado"
+    period_en: "Graduate Specialization"
 
-  - degree_en: Electronic Engineering
+  - degree_en: Bachelor of Science in Electronic Engineering
     degree_es: Ingeniería Electrónica
     institution: Universidad Pedagógica y Tecnológica de Colombia (UPTC)
+    period: "Pregrado"
+    period_en: "Undergraduate Degree"
+
+courses:
+  - name: MLOps & Despliegue de Modelos de Machine Learning
+    platform: Platzi
+    date: "2025"
+  - name: Data Scientist con Python
+    platform: Platzi
+    date: "Apr 2025"
+  - name: Decision Trees y Random Forest con scikit-learn
+    platform: Platzi
+    date: "Mar 2025"
+  - name: Tableau — Visualización de Datos y Storytelling
+    platform: Platzi
+    date: "Mar 2025"
+  - name: Regresión Lineal con Python y scikit-learn
+    platform: Platzi
+    date: "Feb 2025"
+  - name: Crear tus Proyectos de Ciencia de Datos
+    platform: Platzi
+    date: "Feb 2025"
+  - name: Introducción a Machine Learning
+    platform: Platzi
+    date: "Jan 2025"
+  - name: Cálculo Diferencial para Data Science
+    platform: Platzi
+    date: "Jan 2025"
+  - name: Git y GitHub Profesional
+    platform: Platzi
+    date: "Jan 2025"
+  - name: Estadística Descriptiva para Data Science
+    platform: Platzi
+    date: "Dec 2024"
+  - name: Jupyter Notebooks y Anaconda para Ciencia de Datos
+    platform: Platzi
+    date: "Nov 2024"
+  - name: Bases de Datos con SQL
+    platform: Platzi
+    date: "Sep 2024"
+  - name: Python para Ciencia de Datos
+    platform: Platzi
+    date: "Sep 2024"
+  - name: Power BI para Analítica de Negocios
+    platform: Platzi
+    date: "2025"
 
 spoken_languages:
-  - lang: Spanish
-    level: C2
-  - lang: English
-    level: B1
+  - lang: Español
+    lang_en: Spanish
+    level: "Nativo (C2)"
+    level_en: "Native (C2)"
+  - lang: Inglés
+    lang_en: English
+    level: "Intermedio-Alto (B2 profesional para lectura y documentación técnica)"
+    level_en: "Upper-Intermediate (B2 professional reading & technical documentation)"

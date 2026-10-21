@@ -1,4 +1,4 @@
-name: Update CV
+name: Sync CV, Cover Banner, README & Deploy Experience Portal
 
 on:
   push:
@@ -6,15 +6,24 @@ on:
     paths:
       - cv_data.yaml
       - scripts/generate_cv.py
+      - portal/**
+      - .github/workflows/update_cv.yml
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
 
-  workflow_dispatch:  # also allow manual trigger from GitHub UI
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-and-cv"
+  cancel-in-progress: false
 
 jobs:
-  generate:
+  build_and_sync:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,7 +33,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install system dependencies (weasyprint)
+      - name: Install system dependencies (WeasyPrint)
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y \
@@ -34,16 +43,51 @@ jobs:
             libfontconfig1 \
             libcairo2
 
-      - name: Install Python dependencies
-        run: pip install weasyprint pyyaml
+      - name: Install Python dependencies & Run Unit Tests
+        run: |
+          pip install weasyprint pyyaml pytest
+          python -m unittest discover -s tests -v
 
-      - name: Generate CV.pdf and update README badge
+      - name: Generate Cover SVG, README, PDFs & Portal Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/generate_cv.py
 
-      - name: Commit and push changes
+      - name: Commit updated CV PDFs, Cover Banner & README
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "⚡ Update CV"
-          file_pattern: "CV_EN.pdf CV_ES.pdf README.md"
+          commit_message: "⚡ Auto-sync CV PDFs, Cover Banner, README & Portal Data"
+          file_pattern: "CV.pdf CV_EN.pdf CV_ES.pdf README.md assets/banner.svg portal/src/data/generated_profile.json"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Node.js for Astro + React Portal
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install, Test & Build Experience Portal
+        working-directory: ./portal
+        run: |
+          npm install
+          npm test
+          npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./portal/dist
+
+  deploy_portal:
+    needs: build_and_sync
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

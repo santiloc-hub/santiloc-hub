@@ -36,7 +36,7 @@ class TestCVPipeline(unittest.TestCase):
             self.assertIn("tags", job)
             self.assertGreaterEqual(len(job["tags"]), 3)
 
-    def test_render_banner_svg_produces_valid_dynamic_cover(self):
+    def test_render_banner_svg_produces_valid_dynamic_cover_with_obsidian_gold_palette(self):
         self.assertTrue(
             hasattr(generate_cv, "render_banner_svg"),
             "render_banner_svg not defined",
@@ -45,6 +45,8 @@ class TestCVPipeline(unittest.TestCase):
         self.assertTrue(svg.strip().startswith("<svg"))
         self.assertIn('viewBox="0 0 1280 380"', svg)
         self.assertIn("Santiago Montaña", svg)
+        self.assertIn("#ffd98e", svg.lower())
+        self.assertIn("#0f0e0e", svg.lower())
         self.assertIn("CIM DATA IA", svg)
         self.assertIn("Terraform", svg)
         self.assertIn("Snowflake", svg)

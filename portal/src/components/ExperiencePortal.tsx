@@ -1,153 +1,210 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   filterSkillsByCategoryAndQuery,
   filterExperienceByTag,
   getLocalizedText,
-  getArchitectureBlueprints,
+  getCapabilitiesPillars,
 } from "../utils/portalFilter.mjs";
 
-const CATEGORY_LABELS: Record<string, { es: string; en: string; accent: string }> = {
-  all: { es: "Todos los Dominios", en: "All Domains", accent: "#22d3ee" },
-  data_engineering: { es: "Data Engineering & Pipelines", en: "Data Engineering & Pipelines", accent: "#38bdf8" },
-  ml_ai: { es: "Data Science & Machine Learning", en: "Data Science & Machine Learning", accent: "#34d399" },
-  conversational_ai: { es: "Agentes IA & Protocolo MCP", en: "AI Agents & MCP Protocol", accent: "#c084fc" },
-  cloud_devops: { es: "Cloud AWS, Terraform & MLOps", en: "AWS Cloud, Terraform & MLOps", accent: "#fbbf24" },
-  languages: { es: "Lenguajes & Ecosistema", en: "Languages & Ecosystem", accent: "#60a5fa" },
-  databases: { es: "Data Warehousing & Bases de Datos", en: "Data Warehousing & Databases", accent: "#2dd4bf" },
-  visualization: { es: "BI Ejecutivo & Storytelling", en: "Executive BI & Storytelling", accent: "#f472b6" },
-};
-
-const LANG_COLORS: Record<string, string> = {
-  Python: "#38bdf8",
-  "Jupyter Notebook": "#fb923c",
-  TypeScript: "#60a5fa",
-  JavaScript: "#facc15",
-  HTML: "#f87171",
+const CATEGORY_LABELS: Record<string, { es: string; en: string }> = {
+  all: { es: "Todo el Stack", en: "All Stack" },
+  data_engineering: { es: "Data Engineering & ELT", en: "Data Engineering & ELT" },
+  ml_ai: { es: "Machine Learning & Simulación", en: "Machine Learning & Simulation" },
+  conversational_ai: { es: "Agentes IA & MCP", en: "AI Agents & MCP" },
+  cloud_devops: { es: "Cloud AWS & Terraform IaC", en: "AWS Cloud & Terraform IaC" },
+  languages: { es: "Lenguajes", en: "Languages" },
+  databases: { es: "Warehousing & DBs", en: "Warehousing & DBs" },
+  visualization: { es: "Executive BI", en: "Executive BI" },
 };
 
 const UI_TEXT = {
   es: {
-    navExp: "Experiencia",
-    navSkills: "Arquitectura & Stack",
-    navProjects: "Proyectos",
-    navRepos: "GitHub Live",
-    navEdu: "Formación",
-    activeBadge: "DISPONIBLE · CIENTÍFICO DE DATOS JR. & AI ENGINEER @ CIM DATA IA",
-    heroEyebrow: "INGENIERÍA DE DATOS · MACHINE LEARNING · AGENTES MCP · CLOUD IaC",
-    openCvModal: "Explorar CV en Pantalla",
-    downloadEs: "Descargar CV (ES)",
-    downloadEn: "Resume (EN)",
-    copyEmail: "Copiar Correo",
-    copiedEmail: "¡Correo copiado!",
-    telemetryTitle: "ARQUITECTURA EN PRODUCCIÓN",
-    expEyebrow: "TRAYECTORIA VERIFICADA",
-    expTitle: "Experiencia Profesional e Impacto Técnico",
-    expSubtitle: "Selecciona cualquier tecnología del stack para filtrar los cargos y logros donde fue implementada en producción.",
-    allTags: "Todas las tecnologías",
-    skillsEyebrow: "MATRIZ TÉCNICA",
-    skillsTitle: "Ecosistema de Ingeniería, Ciencia de Datos e IA",
-    skillsSubtitle: "Filtra por capa arquitectónica o busca herramientas específicas de mi stack diario.",
-    searchPlaceholder: "Filtrar tecnología (ej. Terraform, Snowflake, MCP, Airflow, FastAPI, Monte Carlo)...",
-    projectsEyebrow: "CASOS DE ESTUDIO & CÓDIGO",
-    projectsTitle: "Proyectos Destacados de Extremo a Extremo",
-    projectsSubtitle: "Desde la simulación estadística y el entrenamiento de modelos hasta APIs en FastAPI y agentes autónomos.",
-    viewRepo: "Inspeccionar código",
-    liveReposEyebrow: "SINCRONIZACIÓN CONTINUA",
-    liveReposTitle: "Actividad Reciente en GitHub",
-    liveReposSubtitle: "Conectado automáticamente a la API oficial de GitHub (@santiloc-hub).",
-    eduEyebrow: "CREDENCIALES ACADÉMICAS Y TÉCNICAS",
-    eduTitle: "Educación Superior",
-    certsTitle: "Certificaciones Verificadas",
-    verifyPlatzi: "Verificar credenciales en Platzi",
-    modalTitle: "Visor de Hoja de Vida (ATS Ready)",
+    menuWork: "Proyectos",
+    menuCapabilities: "Capacidades",
+    menuExp: "Experiencia",
+    menuStack: "Stack",
+    menuCerts: "Credenciales",
+    heroHeadline:
+      "Científico de Datos & Ingeniero de IA diseñando pipelines escalables, modelos predictivos y sistemas autónomos en producción.",
+    heroRoleTag: "Actualmente Científico de Datos Jr. & AI Developer en CIM DATA IA",
+    ctaWork: "Explorar Proyectos",
+    ctaResume: "Ver Hoja de Vida (PDF)",
+    ctaCopyEmail: "Copiar Correo",
+    ctaCopied: "¡Copiado al portapapeles!",
+    workEyebrow: "SELECTED WORK // PROYECTOS DESTACADOS",
+    workTitle: "Ingeniería de Datos, Modelos Predictivos & Agentes en Producción",
+    capabilitiesEyebrow: "CAPABILITIES // QUÉ CONSTRUYO",
+    capabilitiesTitle: "Estrategia Analítica, Arquitectura Cloud & Ejecución de Punta a Punta",
+    expEyebrow: "EXPERIENCE // TRAYECTORIA PROFESIONAL",
+    expTitle: "Impacto Técnico en Consultoría de IA, Banca e Industria",
+    expFilterAll: "Todas las tecnologías",
+    stackEyebrow: "TECHNICAL SYSTEM // MATRIZ DE HABILIDADES",
+    stackTitle: "Herramientas, Lenguajes & Ecosistema en Producción",
+    searchPlaceholder: "Buscar tecnología (ej. Terraform, Snowflake, MCP, Airflow, FastAPI, Monte Carlo)...",
+    liveEyebrow: "OPEN SOURCE // GITHUB ACTIVITY",
+    liveTitle: "Repositorios Recientes Sincronizados en Vivo",
+    eduEyebrow: "EDUCATION & CREDENTIALS // FORMACIÓN",
+    eduTitle: "Educación Superior & Certificaciones Verificables",
+    verifyPlatzi: "Verificar perfil en Platzi",
+    contactEyebrow: "NEXT STEP // CONTACTO DIRECTO",
+    contactHeadline: "¿Construimos el próximo pipeline de datos, modelo predictivo o agente autónomo?",
+    modalTitle: "Hoja de Vida — Santiago Montaña",
     closeModal: "Cerrar",
-    autoSyncLabel: "Ecosistema compilado con Astro + React y sincronizado desde cv_data.yaml + GitHub API",
+    inspectRepo: "Ver caso y código",
   },
   en: {
-    navExp: "Experience",
-    navSkills: "Architecture & Stack",
-    navProjects: "Projects",
-    navRepos: "GitHub Live",
-    navEdu: "Education",
-    activeBadge: "AVAILABLE · JR. DATA SCIENTIST & AI ENGINEER @ CIM DATA IA",
-    heroEyebrow: "DATA ENGINEERING · MACHINE LEARNING · MCP AGENTS · CLOUD IaC",
-    openCvModal: "Preview Resume",
-    downloadEs: "CV Español (PDF)",
-    downloadEn: "Download Resume (EN)",
-    copyEmail: "Copy Email",
-    copiedEmail: "Email copied!",
-    telemetryTitle: "PRODUCTION ARCHITECTURE",
-    expEyebrow: "VERIFIED TRACK RECORD",
-    expTitle: "Professional Experience & Engineering Impact",
-    expSubtitle: "Click any technology pill to filter the roles and production milestones where it was applied.",
-    allTags: "All technologies",
-    skillsEyebrow: "TECHNICAL MATRIX",
-    skillsTitle: "Data Engineering, ML & AI Stack",
-    skillsSubtitle: "Filter by architectural layer or search for a specific tool in my daily workflow.",
-    searchPlaceholder: "Search technology (e.g. Terraform, Snowflake, MCP, Airflow, FastAPI, Monte Carlo)...",
-    projectsEyebrow: "CASE STUDIES & CODE",
-    projectsTitle: "End-to-End Featured Projects",
-    projectsSubtitle: "From statistical simulation and model training to FastAPI microservices and autonomous agents.",
-    viewRepo: "Inspect repository",
-    liveReposEyebrow: "CONTINUOUS SYNC",
-    liveReposTitle: "Live GitHub Activity & Repositories",
-    liveReposSubtitle: "Automatically synchronized from the official GitHub API (@santiloc-hub).",
-    eduEyebrow: "ACADEMIC & TECHNICAL CREDENTIALS",
-    eduTitle: "Higher Education",
-    certsTitle: "Verified Certifications",
+    menuWork: "Work",
+    menuCapabilities: "Capabilities",
+    menuExp: "Experience",
+    menuStack: "Stack",
+    menuCerts: "Credentials",
+    heroHeadline:
+      "Data Scientist & AI Engineer shaping scalable data pipelines, predictive models, and autonomous systems across cloud and enterprise.",
+    heroRoleTag: "Currently Jr. Data Scientist & AI Developer at CIM DATA IA",
+    ctaWork: "Explore Work",
+    ctaResume: "Preview Resume (PDF)",
+    ctaCopyEmail: "Copy Email",
+    ctaCopied: "Copied to clipboard!",
+    workEyebrow: "SELECTED WORK // CASE STUDIES",
+    workTitle: "Production Data Pipelines, Predictive Models & Autonomous AI",
+    capabilitiesEyebrow: "CAPABILITIES // WHAT I DO",
+    capabilitiesTitle: "Analytical Strategy, Cloud Architecture & End-to-End Execution",
+    expEyebrow: "EXPERIENCE // CAREER TRACK RECORD",
+    expTitle: "Engineering Impact Across AI Consulting, Banking & Industry",
+    expFilterAll: "All technologies",
+    stackEyebrow: "TECHNICAL SYSTEM // SKILLS MATRIX",
+    stackTitle: "Production Tools, Languages & Cloud Ecosystem",
+    searchPlaceholder: "Search skill (e.g. Terraform, Snowflake, MCP, Airflow, FastAPI, Monte Carlo)...",
+    liveEyebrow: "OPEN SOURCE // GITHUB ACTIVITY",
+    liveTitle: "Live Synchronized GitHub Repositories",
+    eduEyebrow: "EDUCATION & CREDENTIALS // BACKGROUND",
+    eduTitle: "Academic Degrees & Verified Certifications",
     verifyPlatzi: "Verify credentials on Platzi",
-    modalTitle: "Interactive Resume Viewer (ATS Ready)",
+    contactEyebrow: "NEXT STEP // GET IN TOUCH",
+    contactHeadline: "Ready to build your next data pipeline, predictive model, or autonomous AI agent?",
+    modalTitle: "Resume — Santiago Montaña",
     closeModal: "Close",
-    autoSyncLabel: "Ecosystem built with Astro + React and synced from cv_data.yaml + GitHub API",
+    inspectRepo: "Inspect case & code",
   },
 };
 
-function IconArrowUpRight() {
+function BlurRevealWords({
+  text,
+  className = "",
+  baseDelay = 0,
+}: {
+  text: string;
+  className?: string;
+  baseDelay?: number;
+}) {
+  const words = text.split(" ");
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="7" y1="17" x2="17" y2="7" />
-      <polyline points="7 7 17 7 17 17" />
-    </svg>
+    <span className={className}>
+      {words.map((word, idx) => (
+        <React.Fragment key={`${word}-${idx}`}>
+          <span
+            className="blur-word"
+            style={{ animationDelay: `${baseDelay + idx * 42}ms` }}
+          >
+            {word}
+          </span>{" "}
+        </React.Fragment>
+      ))}
+    </span>
   );
 }
 
-function IconCheck() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
+function ProjectVisualCanvas({ index, category, tools }: { index: number; category: string; tools: string[] }) {
+  const variants = [
+    {
+      bg: "radial-gradient(circle at 80% 20%, rgba(255, 217, 142, 0.22), transparent 55%), linear-gradient(145deg, #1b1917 0%, #111010 100%)",
+      accent: "#ffd98e",
+      label: "AUTONOMOUS MCP PIPELINE",
+      metric: "LLM -> MCP -> Multi-Channel",
+    },
+    {
+      bg: "radial-gradient(circle at 20% 80%, rgba(255, 217, 142, 0.18), transparent 55%), linear-gradient(145deg, #171717 0%, #0f0e0e 100%)",
+      accent: "#fcfcfc",
+      label: "PRODUCTION ML INFERENCE API",
+      metric: "FastAPI · Pydantic · Serialized Model",
+    },
+    {
+      bg: "radial-gradient(circle at 75% 75%, rgba(255, 217, 142, 0.24), transparent 60%), linear-gradient(135deg, #1c1a16 0%, #100f0f 100%)",
+      accent: "#ffd98e",
+      label: "MONTE CARLO STOCHASTIC ENGINE",
+      metric: "10,000+ Simulated Paths · NLP Sentiment",
+    },
+    {
+      bg: "radial-gradient(circle at 25% 25%, rgba(255, 217, 142, 0.19), transparent 55%), linear-gradient(145deg, #181716 0%, #0f0e0e 100%)",
+      accent: "#fcfcfc",
+      label: "LOW-LATENCY VOICE AI AGENT",
+      metric: "ElevenLabs Stream · Python · REST",
+    },
+    {
+      bg: "radial-gradient(circle at 80% 30%, rgba(255, 217, 142, 0.2), transparent 55%), linear-gradient(145deg, #191816 0%, #111010 100%)",
+      accent: "#ffd98e",
+      label: "SUPPLY CHAIN OPTIMIZATION",
+      metric: "Carrier & Pricing Elasticity Model",
+    },
+    {
+      bg: "radial-gradient(circle at 30% 70%, rgba(255, 217, 142, 0.18), transparent 55%), linear-gradient(145deg, #171615 0%, #0f0e0e 100%)",
+      accent: "#fcfcfc",
+      label: "ENSEMBLE CLASSIFICATION",
+      metric: "Random Forest · Decision Trees · ROC-AUC",
+    },
+  ];
+  const v = variants[index % variants.length];
 
-function IconDocument() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-    </svg>
-  );
-}
+    <div className="work-visual-canvas" style={{ background: v.bg }}>
+      <div className="canvas-top-row">
+        <span className="canvas-spec-label">{v.label}</span>
+        <span className="canvas-index">0{index + 1}</span>
+      </div>
 
-function IconSearch() {
-  return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
+      {/* Minimalist Architectural Node Diagram inside the Showcase Canvas */}
+      <div className="canvas-diagram">
+        <svg viewBox="0 0 420 120" className="canvas-svg" aria-hidden="true">
+          <line x1="48" y1="60" x2="210" y2="34" stroke="rgba(255,217,142,0.32)" strokeWidth="1.2" />
+          <line x1="48" y1="60" x2="210" y2="86" stroke="rgba(252,252,252,0.2)" strokeWidth="1.2" />
+          <line x1="210" y1="34" x2="368" y2="60" stroke="rgba(255,217,142,0.38)" strokeWidth="1.2" />
+          <line x1="210" y1="86" x2="368" y2="60" stroke="rgba(252,252,252,0.22)" strokeWidth="1.2" />
+
+          <circle cx="48" cy="60" r="14" fill="#191919" stroke="#ffd98e" strokeWidth="1.5" />
+          <circle cx="48" cy="60" r="4" fill="#ffd98e" />
+
+          <rect x="160" y="18" width="100" height="32" rx="8" fill="#141313" stroke="rgba(255,217,142,0.45)" strokeWidth="1" />
+          <text x="210" y="38" fill="#ffd98e" fontSize="9.5" fontFamily="JetBrains Mono, monospace" textAnchor="middle">
+            {tools[0] || "Python"}
+          </text>
+
+          <rect x="160" y="70" width="100" height="32" rx="8" fill="#141313" stroke="rgba(252,252,252,0.22)" strokeWidth="1" />
+          <text x="210" y="90" fill="#fcfcfc" fontSize="9.5" fontFamily="JetBrains Mono, monospace" textAnchor="middle">
+            {tools[1] || "ML / Cloud"}
+          </text>
+
+          <circle cx="368" cy="60" r="16" fill="rgba(255,217,142,0.14)" stroke="#ffd98e" strokeWidth="1.5" />
+          <circle cx="368" cy="60" r="5" fill="#fcfcfc" />
+        </svg>
+      </div>
+
+      <div className="canvas-bottom-row">
+        <span className="canvas-metric">{v.metric}</span>
+        <span className="canvas-cat-pill">{category}</span>
+      </div>
+    </div>
   );
 }
 
 export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub" }: { profileData: any; baseUrl?: string }) {
   const [lang, setLang] = useState<"es" | "en">("es");
-  const [activeBlueprint, setActiveBlueprint] = useState<string>("pipelines");
   const [selectedExpTag, setSelectedExpTag] = useState<string>("ALL");
   const [activeSkillCat, setActiveSkillCat] = useState<string>("all");
   const [skillQuery, setSkillQuery] = useState<string>("");
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [cvModalOpen, setCvModalOpen] = useState<boolean>(false);
   const [cvModalLang, setCvModalLang] = useState<"es" | "en">("es");
+  const [clockText, setClockText] = useState<string>("2026 · BOGOTÁ, CO");
 
   const cv = profileData.cv;
   const meta = cv.meta;
@@ -155,11 +212,27 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
   const t = UI_TEXT[lang];
   const cleanBase = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
 
-  const blueprints = useMemo(() => getArchitectureBlueprints(lang), [lang]);
-  const currentBlueprint = useMemo(
-    () => blueprints.find((b) => b.id === activeBlueprint) || blueprints[0],
-    [blueprints, activeBlueprint]
-  );
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const datePart = now.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+      });
+      const timePart = now.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      setClockText(`${datePart} · ${timePart}`);
+    };
+    updateClock();
+    const timer = setInterval(updateClock, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const pillars = useMemo(() => getCapabilitiesPillars(lang), [lang]);
 
   const featuredExpTags = useMemo(() => {
     const set = new Set<string>();
@@ -195,44 +268,42 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
   };
 
   return (
-    <div className="portal-shell">
-      {/* Ambient background spotlights */}
-      <div className="ambient-orb orb-cyan" aria-hidden="true" />
-      <div className="ambient-orb orb-emerald" aria-hidden="true" />
-      <div className="ambient-grid" aria-hidden="true" />
+    <div className="js-shell">
+      {/* Subtle Warm Ambient Top Glow */}
+      <div className="warm-spotlight" aria-hidden="true" />
 
-      {/* Top Glass Navigation Bar */}
-      <header className="top-nav">
-        <div className="nav-inner">
-          <a href="#" className="brand">
-            <span className="brand-mark">SM</span>
-            <div className="brand-text">
-              <span className="brand-name">{meta.name}</span>
-              <span className="brand-sub">DATA &amp; AI HUB</span>
-            </div>
-          </a>
+      {/* JAKE SINCLAIR STYLE TOP HUD BAR */}
+      <header className="hud-header">
+        <div className="hud-inner">
+          <div className="hud-left">
+            <a href="#" className="hud-brand">
+              <span className="hud-dot" />
+              <span>Santiago Montaña</span>
+            </a>
+            <span className="hud-clock">{clockText}</span>
+          </div>
 
-          <nav className="nav-links">
-            <a href="#experience">{t.navExp}</a>
-            <a href="#skills">{t.navSkills}</a>
-            <a href="#projects">{t.navProjects}</a>
-            <a href="#github-live">{t.navRepos}</a>
-            <a href="#education">{t.navEdu}</a>
+          <nav className="hud-nav" aria-label="Primary Navigation">
+            <a href="#work">{t.menuWork}</a>
+            <a href="#capabilities">{t.menuCapabilities}</a>
+            <a href="#experience">{t.menuExp}</a>
+            <a href="#stack">{t.menuStack}</a>
+            <a href="#credentials">{t.menuCerts}</a>
           </nav>
 
-          <div className="nav-actions">
-            <div className="lang-switch" role="group" aria-label="Language selector">
+          <div className="hud-right">
+            <div className="hud-lang-toggle" role="group" aria-label="Language switch">
               <button
                 type="button"
-                className={lang === "es" ? "lang-btn active" : "lang-btn"}
                 onClick={() => setLang("es")}
+                className={lang === "es" ? "hud-lang-btn active" : "hud-lang-btn"}
               >
                 ES
               </button>
               <button
                 type="button"
-                className={lang === "en" ? "lang-btn active" : "lang-btn"}
                 onClick={() => setLang("en")}
+                className={lang === "en" ? "hud-lang-btn active" : "hud-lang-btn"}
               >
                 EN
               </button>
@@ -241,229 +312,230 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
             <button
               type="button"
               onClick={() => openResumeViewer(lang)}
-              className="btn-nav-resume"
+              className="hud-cv-btn"
             >
-              <IconDocument />
               <span>CV / PDF</span>
+              <span className="arrow-ne">↗</span>
             </button>
           </div>
         </div>
       </header>
 
-      <main className="container">
-        {/* ASYMMETRIC 2-COLUMN PREMIUM HERO */}
-        <section className="hero-grid">
-          <div className="hero-left">
-            <div className="status-pill">
-              <span className="pulse-ring" />
-              <span className="pulse-dot" />
-              <span>{t.activeBadge}</span>
+      <main className="editorial-main">
+        {/* JAKE SINCLAIR EDITORIAL HERO */}
+        <section className="js-hero">
+          <div className="hero-avatar-row">
+            <div className="squircle-avatar">
+              <span className="squircle-initials">SM</span>
+              <span className="squircle-status-dot" title={t.heroRoleTag} />
             </div>
 
-            <div className="hero-eyebrow">{t.heroEyebrow}</div>
-            <h1 className="hero-title">{meta.name}</h1>
-            <p className="hero-tagline">{getLocalizedText(meta, "tagline", lang)}</p>
-            <p className="hero-summary">{getLocalizedText(cv, "summary", lang)}</p>
-
-            <div className="hero-cta-group">
-              <button
-                type="button"
-                onClick={() => openResumeViewer(lang)}
-                className="btn-primary-glow"
-              >
-                <IconDocument />
-                <span>{t.openCvModal}</span>
-              </button>
-
-              <a
-                href={`${cleanBase}/CV_ES.pdf`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-glass"
-              >
-                <span>{t.downloadEs}</span>
-                <IconArrowUpRight />
-              </a>
-
-              <a
-                href={`${cleanBase}/CV_EN.pdf`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-glass"
-              >
-                <span>{t.downloadEn}</span>
-                <IconArrowUpRight />
-              </a>
-
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="btn-glass"
-              >
-                <span>{copiedEmail ? t.copiedEmail : t.copyEmail}</span>
-              </button>
-            </div>
-
-            <div className="hero-social-strip">
-              <a href={meta.github} target="_blank" rel="noreferrer" className="social-link">
-                <span>github.com/santiloc-hub</span>
-                <IconArrowUpRight />
-              </a>
-              <span className="sep">·</span>
-              <a href={meta.linkedin} target="_blank" rel="noreferrer" className="social-link">
-                <span>linkedin.com/in/santiago-montaña</span>
-                <IconArrowUpRight />
-              </a>
-              <span className="sep">·</span>
-              <span className="location-tag">{getLocalizedText(meta, "location", lang)}</span>
+            <div className="hero-identity-meta">
+              <h2 className="hero-gold-name">
+                <BlurRevealWords text={meta.name} baseDelay={40} />
+              </h2>
+              <p className="hero-role-caption">{t.heroRoleTag}</p>
             </div>
           </div>
 
-          {/* Right Column: Interactive Architecture & Telemetry Console */}
-          <div className="hero-right">
-            <div className="telemetry-console">
-              <div className="console-topbar">
-                <div className="window-dots">
-                  <span className="dot red" />
-                  <span className="dot amber" />
-                  <span className="dot green" />
-                </div>
-                <span className="console-title">{t.telemetryTitle}</span>
-                <span className="console-live-tag">● LIVE STACK</span>
+          <h1 className="hero-statement" key={lang}>
+            <BlurRevealWords text={t.heroHeadline} baseDelay={140} />
+          </h1>
+
+          <p className="hero-sublead">{getLocalizedText(cv, "summary", lang)}</p>
+
+          <div className="hero-actions-bar">
+            <a href="#work" className="btn-gold">
+              <span>{t.ctaWork}</span>
+              <span>↓</span>
+            </a>
+
+            <button
+              type="button"
+              onClick={() => openResumeViewer(lang)}
+              className="btn-obsidian"
+            >
+              <span>{t.ctaResume}</span>
+              <span>↗</span>
+            </button>
+
+            <a
+              href={`${cleanBase}/CV_ES.pdf`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-obsidian"
+            >
+              <span>CV (ES)</span>
+              <span>↗</span>
+            </a>
+
+            <a
+              href={`${cleanBase}/CV_EN.pdf`}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-obsidian"
+            >
+              <span>Resume (EN)</span>
+              <span>↗</span>
+            </a>
+
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="btn-obsidian"
+            >
+              <span>{copiedEmail ? t.ctaCopied : t.ctaCopyEmail}</span>
+            </button>
+          </div>
+
+          {/* Minimalist Metrics Strip */}
+          <div className="js-metrics-row">
+            {(meta.stats || []).map((st: any, idx: number) => (
+              <div key={idx} className="js-metric-item">
+                <span className="js-metric-val">{st.value}</span>
+                <span className="js-metric-lbl">{getLocalizedText(st, "label", lang)}</span>
               </div>
+            ))}
+          </div>
+        </section>
 
-              {/* Interactive Blueprint Tabs */}
-              <div className="console-tabs" role="tablist">
-                {blueprints.map((bp) => (
-                  <button
-                    key={bp.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeBlueprint === bp.id}
-                    onClick={() => setActiveBlueprint(bp.id)}
-                    className={activeBlueprint === bp.id ? "console-tab active" : "console-tab"}
-                  >
-                    {bp.label}
-                  </button>
-                ))}
-              </div>
+        {/* SELECTED WORK — LARGE FORMAT CASE STUDY CARDS */}
+        <section id="work" className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.workEyebrow}</span>
+            <h2 className="js-section-title">{t.workTitle}</h2>
+          </div>
 
-              <div className="console-body">
-                <div className="blueprint-subhead">
-                  <span className="bp-status">{currentBlueprint.status}</span>
-                  <span className="bp-badge">{currentBlueprint.badge}</span>
-                </div>
+          <div className="work-showcase-grid">
+            {(cv.projects || []).map((proj: any, idx: number) => (
+              <article key={idx} className="work-showcase-card">
+                <a
+                  href={proj.repo || meta.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="work-card-link"
+                >
+                  <ProjectVisualCanvas
+                    index={idx}
+                    category={proj.category || "Data & AI"}
+                    tools={proj.tools || []}
+                  />
 
-                <div className="blueprint-nodes">
-                  {currentBlueprint.nodes.map((node: any) => (
-                    <div key={node.step} className="bp-node-card">
-                      <div className="bp-step">{node.step}</div>
-                      <div className="bp-node-info">
-                        <div className="bp-node-title">{node.title}</div>
-                        <div className="bp-node-tech">{node.tech}</div>
-                      </div>
-                      <div className="bp-node-metric">{node.metric}</div>
+                  <div className="work-card-body">
+                    <div className="work-meta-line">
+                      <span className="work-year">2025 — 2026</span>
+                      <span className="work-category">{proj.category || "Data & AI"}</span>
                     </div>
+
+                    <div className="work-title-row">
+                      <h3>{getLocalizedText(proj, "name", lang)}</h3>
+                      <span className="work-arrow-circle">↗</span>
+                    </div>
+
+                    <p className="work-description">
+                      {getLocalizedText(proj, "description", lang)}
+                    </p>
+
+                    <div className="work-tags">
+                      {(proj.tools || []).map((tool: string) => (
+                        <span key={tool} className="work-tag-pill">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* JAKE SINCLAIR 6-PILLAR CAPABILITIES SECTION */}
+        <section id="capabilities" className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.capabilitiesEyebrow}</span>
+            <h2 className="js-section-title">{t.capabilitiesTitle}</h2>
+          </div>
+
+          <div className="capabilities-grid">
+            {pillars.map((pillar: any) => (
+              <article key={pillar.number} className="capability-card">
+                <div className="cap-top">
+                  <span className="cap-number">{pillar.number}</span>
+                  <h3 className="cap-title">{pillar.title}</h3>
+                  <p className="cap-desc">{pillar.description}</p>
+                </div>
+
+                <div className="cap-tags">
+                  {pillar.tags.map((tg: string) => (
+                    <span key={tg} className="cap-tag">
+                      {tg}
+                    </span>
                   ))}
                 </div>
-
-                <pre className="console-code">
-                  <code>{currentBlueprint.codeSnippet}</code>
-                </pre>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* BENTO METRICS STRIP */}
-        <section className="bento-stats-strip">
-          {(meta.stats || []).map((st: any, idx: number) => (
-            <div key={idx} className="bento-stat-card">
-              <div className="bento-stat-top">
-                <span className="bento-stat-index">0{idx + 1}</span>
-                <span className="bento-stat-dot" />
-              </div>
-              <div className="bento-stat-value">{st.value}</div>
-              <div className="bento-stat-label">{getLocalizedText(st, "label", lang)}</div>
-            </div>
-          ))}
-        </section>
-
-        {/* EXPERIENCE TIMELINE SECTION */}
-        <section id="experience" className="section-block">
-          <div className="section-heading">
-            <span className="section-eyebrow">{t.expEyebrow}</span>
-            <h2>{t.expTitle}</h2>
-            <p>{t.expSubtitle}</p>
+        {/* EDITORIAL EXPERIENCE LEDGER */}
+        <section id="experience" className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.expEyebrow}</span>
+            <h2 className="js-section-title">{t.expTitle}</h2>
           </div>
 
-          <div className="filter-pills">
+          <div className="js-filter-bar">
             {featuredExpTags.map((tag) => (
               <button
                 key={tag}
                 type="button"
                 onClick={() => setSelectedExpTag(tag)}
-                className={selectedExpTag === tag ? "pill-btn active" : "pill-btn"}
+                className={selectedExpTag === tag ? "js-filter-pill active" : "js-filter-pill"}
               >
-                {tag === "ALL" ? t.allTags : tag}
+                {tag === "ALL" ? t.expFilterAll : tag}
               </button>
             ))}
           </div>
 
-          <div className="timeline-track">
+          <div className="exp-ledger">
             {filteredExperience.map((job: any) => {
               const bullets = job[`bullets_${lang}`] || job.bullets_es || [];
               const period = lang === "en" && job.period_en ? job.period_en : job.period;
               return (
                 <article
                   key={job.id || job.title_es}
-                  className={job.current ? "exp-card current" : "exp-card"}
+                  className={job.current ? "exp-row current" : "exp-row"}
                 >
-                  <div className="exp-timeline-marker">
-                    <span className="marker-core" />
+                  <div className="exp-left-col">
+                    <div className="exp-period">{period}</div>
+                    <div className="exp-company-name">{job.company}</div>
+                    <div className="exp-loc">{job.location}</div>
+                    {job.current && <span className="exp-live-badge">● ACTIVE ROLE</span>}
                   </div>
 
-                  <div className="exp-card-header">
-                    <div>
-                      <div className="exp-title-row">
-                        <h3>{getLocalizedText(job, "title", lang)}</h3>
-                        {job.current && <span className="active-role-badge">CURRENT ROLE</span>}
-                      </div>
-                      <div className="exp-company-row">
-                        <span className="exp-company">{job.company}</span>
-                        <span className="sep">·</span>
-                        <span className="exp-location">{job.location}</span>
-                      </div>
+                  <div className="exp-right-col">
+                    <h3 className="exp-role-heading">{getLocalizedText(job, "title", lang)}</h3>
+                    <div className="exp-domain-sub">{getLocalizedText(job, "domain", lang)}</div>
+
+                    <ul className="exp-bullets">
+                      {bullets.map((b: string, i: number) => (
+                        <li key={i}>{b}</li>
+                      ))}
+                    </ul>
+
+                    <div className="exp-tags-wrap">
+                      {(job.tags || []).map((tag: string) => (
+                        <button
+                          key={tag}
+                          type="button"
+                          onClick={() => setSelectedExpTag(selectedExpTag === tag ? "ALL" : tag)}
+                          className={selectedExpTag === tag ? "work-tag-pill active" : "work-tag-pill clickable"}
+                        >
+                          {tag}
+                        </button>
+                      ))}
                     </div>
-                    <span className="exp-period-badge">{period}</span>
-                  </div>
-
-                  <div className="exp-domain-banner">
-                    {getLocalizedText(job, "domain", lang)}
-                  </div>
-
-                  <ul className="exp-bullet-list">
-                    {bullets.map((b: string, i: number) => (
-                      <li key={i}>
-                        <span className="bullet-icon">
-                          <IconCheck />
-                        </span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="exp-tag-row">
-                    {(job.tags || []).map((tag: string) => (
-                      <button
-                        key={tag}
-                        type="button"
-                        className={selectedExpTag === tag ? "tech-chip active" : "tech-chip"}
-                        onClick={() => setSelectedExpTag(selectedExpTag === tag ? "ALL" : tag)}
-                      >
-                        {tag}
-                      </button>
-                    ))}
                   </div>
                 </article>
               );
@@ -471,64 +543,52 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
           </div>
         </section>
 
-        {/* INTERACTIVE SKILLS BENTO MATRIX */}
-        <section id="skills" className="section-block">
-          <div className="section-heading">
-            <span className="section-eyebrow">{t.skillsEyebrow}</span>
-            <h2>{t.skillsTitle}</h2>
-            <p>{t.skillsSubtitle}</p>
+        {/* INTERACTIVE TECHNICAL STACK MATRIX */}
+        <section id="stack" className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.stackEyebrow}</span>
+            <h2 className="js-section-title">{t.stackTitle}</h2>
           </div>
 
-          <div className="skills-toolbar">
-            <div className="search-box">
-              <IconSearch />
-              <input
-                type="search"
-                value={skillQuery}
-                onChange={(e) => setSkillQuery(e.target.value)}
-                placeholder={t.searchPlaceholder}
-                className="skill-search-input"
-              />
-            </div>
+          <div className="stack-controls">
+            <input
+              type="search"
+              value={skillQuery}
+              onChange={(e) => setSkillQuery(e.target.value)}
+              placeholder={t.searchPlaceholder}
+              className="js-search-input"
+            />
 
-            <div className="filter-pills">
-              {Object.keys(CATEGORY_LABELS).map((catKey) => {
-                const info = CATEGORY_LABELS[catKey];
-                return (
-                  <button
-                    key={catKey}
-                    type="button"
-                    onClick={() => setActiveSkillCat(catKey)}
-                    className={activeSkillCat === catKey ? "pill-btn active" : "pill-btn"}
-                  >
-                    {info[lang]}
-                  </button>
-                );
-              })}
+            <div className="js-filter-bar">
+              {Object.keys(CATEGORY_LABELS).map((catKey) => (
+                <button
+                  key={catKey}
+                  type="button"
+                  onClick={() => setActiveSkillCat(catKey)}
+                  className={activeSkillCat === catKey ? "js-filter-pill active" : "js-filter-pill"}
+                >
+                  {CATEGORY_LABELS[catKey][lang]}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="bento-skills-grid">
+          <div className="stack-bento-grid">
             {filteredSkills.map((group: any) => {
-              const catMeta = CATEGORY_LABELS[group.category] || {
+              const labelObj = CATEGORY_LABELS[group.category] || {
                 es: group.category,
                 en: group.category,
-                accent: "#38bdf8",
               };
               return (
-                <div key={group.category} className="bento-skill-card">
-                  <div className="skill-card-head">
-                    <span
-                      className="skill-accent-bar"
-                      style={{ backgroundColor: catMeta.accent }}
-                    />
-                    <h3>{catMeta[lang]}</h3>
-                    <span className="skill-count">{group.items.length}</span>
+                <div key={group.category} className="stack-bento-card">
+                  <div className="stack-card-header">
+                    <h3>{labelObj[lang]}</h3>
+                    <span>{group.items.length}</span>
                   </div>
-                  <div className="skill-items-wrap">
-                    {group.items.map((skill: string) => (
-                      <span key={skill} className="skill-pill">
-                        {skill}
+                  <div className="stack-items">
+                    {group.items.map((item: string) => (
+                      <span key={item} className="stack-chip">
+                        {item}
                       </span>
                     ))}
                   </div>
@@ -538,192 +598,132 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
           </div>
         </section>
 
-        {/* FEATURED CASE STUDIES & PROJECTS */}
-        <section id="projects" className="section-block">
-          <div className="section-heading">
-            <span className="section-eyebrow">{t.projectsEyebrow}</span>
-            <h2>{t.projectsTitle}</h2>
-            <p>{t.projectsSubtitle}</p>
+        {/* LIVE GITHUB ACTIVITY */}
+        <section className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.liveEyebrow}</span>
+            <h2 className="js-section-title">{t.liveTitle}</h2>
           </div>
 
-          <div className="bento-projects-grid">
-            {(cv.projects || []).map((proj: any, idx: number) => (
-              <article key={idx} className="bento-project-card">
-                <div className="project-card-top">
-                  <div className="project-meta-row">
-                    <span className="project-category-chip">{proj.category || "Data & AI"}</span>
-                    <span className="project-index">0{idx + 1}</span>
+          <div className="github-live-grid">
+            {githubRepos.map((repo: any) => (
+              <a
+                key={repo.name}
+                href={repo.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="github-live-card"
+              >
+                <div className="gh-card-top">
+                  <div className="gh-name-row">
+                    <span className="gh-repo-name">{repo.name}</span>
+                    <span className="gh-arrow">↗</span>
                   </div>
-                  <h3>{getLocalizedText(proj, "name", lang)}</h3>
-                  <p>{getLocalizedText(proj, "description", lang)}</p>
+                  <p className="gh-repo-desc">{repo.description}</p>
                 </div>
-
-                <div className="project-card-bottom">
-                  <div className="project-tools">
-                    {(proj.tools || []).map((tool: string) => (
-                      <span key={tool} className="tech-chip static">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                  {proj.repo && (
-                    <a
-                      href={proj.repo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="project-action-link"
-                    >
-                      <span>{t.viewRepo}</span>
-                      <IconArrowUpRight />
-                    </a>
-                  )}
+                <div className="gh-card-bottom">
+                  <span className="gh-lang">{repo.language || "Python"}</span>
+                  <span className="gh-date">{(repo.updated_at || "").slice(0, 10)}</span>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </section>
 
-        {/* LIVE GITHUB REPOSITORIES */}
-        <section id="github-live" className="section-block">
-          <div className="section-heading">
-            <span className="section-eyebrow">{t.liveReposEyebrow}</span>
-            <h2>{t.liveReposTitle}</h2>
-            <p>{t.liveReposSubtitle}</p>
+        {/* EDUCATION & VERIFIED CERTIFICATIONS */}
+        <section id="credentials" className="js-section">
+          <div className="js-section-head">
+            <span className="js-eyebrow">{t.eduEyebrow}</span>
+            <h2 className="js-section-title">{t.eduTitle}</h2>
           </div>
 
-          <div className="bento-repos-grid">
-            {githubRepos.map((repo: any) => {
-              const langName = repo.language || "Python";
-              const dotColor = LANG_COLORS[langName] || "#38bdf8";
-              return (
-                <a
-                  key={repo.name}
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bento-repo-card"
-                >
-                  <div>
-                    <div className="repo-head">
-                      <span className="repo-name">{repo.name}</span>
-                      <span className="repo-arrow">
-                        <IconArrowUpRight />
-                      </span>
-                    </div>
-                    <p className="repo-desc">{repo.description}</p>
-                  </div>
+          <div className="credentials-layout">
+            <div className="degrees-col">
+              {(cv.education || []).map((ed: any, idx: number) => (
+                <div key={idx} className="degree-card">
+                  <span className="degree-badge">
+                    {lang === "en" && ed.period_en ? ed.period_en : ed.period}
+                  </span>
+                  <h3>{getLocalizedText(ed, "degree", lang)}</h3>
+                  <p>{ed.institution}</p>
+                </div>
+              ))}
+            </div>
 
-                  <div className="repo-foot">
-                    <span className="repo-lang-badge">
-                      <span
-                        className="lang-color-dot"
-                        style={{ backgroundColor: dotColor }}
-                      />
-                      {langName}
-                    </span>
-                    <span className="repo-date">{(repo.updated_at || "").slice(0, 10)}</span>
-                  </div>
+            <div className="certs-col">
+              <div className="certs-top-bar">
+                <span>Platzi Verified Credentials (2024 — 2025)</span>
+                <a href={meta.platzi} target="_blank" rel="noreferrer" className="platzi-gold-link">
+                  {t.verifyPlatzi} ↗
                 </a>
-              );
-            })}
+              </div>
+              <div className="certs-list-grid">
+                {(cv.courses || []).map((c: any, idx: number) => (
+                  <div key={idx} className="cert-item-card">
+                    <span className="cert-title">{c.name}</span>
+                    <span className="cert-date">{c.date || "2025"}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ACADEMIC EDUCATION & VERIFIED CERTIFICATIONS */}
-        <section id="education" className="section-block">
-          <div className="section-heading">
-            <span className="section-eyebrow">{t.eduEyebrow}</span>
-            <h2>{t.eduTitle} &amp; {t.certsTitle}</h2>
-          </div>
-
-          <div className="edu-certs-bento">
-            <div className="edu-panel">
-              <h3 className="subpanel-title">{t.eduTitle}</h3>
-              <div className="edu-list">
-                {(cv.education || []).map((ed: any, idx: number) => (
-                  <div key={idx} className="edu-glass-card">
-                    <span className="edu-type-tag">
-                      {lang === "en" && ed.period_en ? ed.period_en : ed.period}
-                    </span>
-                    <h4>{getLocalizedText(ed, "degree", lang)}</h4>
-                    <p>{ed.institution}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="certs-panel">
-              <div className="certs-header-row">
-                <h3 className="subpanel-title">{t.certsTitle}</h3>
-                <a
-                  href={meta.platzi}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="platzi-verify-btn"
-                >
-                  <span>{t.verifyPlatzi}</span>
-                  <IconArrowUpRight />
-                </a>
-              </div>
-
-              <div className="certs-bento-grid">
-                {(cv.courses || []).map((course: any, idx: number) => (
-                  <div key={idx} className="cert-glass-card">
-                    <div className="cert-name">{course.name}</div>
-                    <div className="cert-meta">
-                      <span className="cert-platform">{course.platform}</span>
-                      {course.date && <span>· {course.date}</span>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* JAKE SINCLAIR CLOSING CTA BANNER */}
+        <section className="js-closing-cta">
+          <span className="js-eyebrow">{t.contactEyebrow}</span>
+          <h2>{t.contactHeadline}</h2>
+          <div className="closing-links">
+            <a href={`mailto:${meta.email}`} className="btn-gold">
+              {meta.email} ↗
+            </a>
+            <a href={meta.linkedin} target="_blank" rel="noreferrer" className="btn-obsidian">
+              LinkedIn ↗
+            </a>
+            <a href={meta.github} target="_blank" rel="noreferrer" className="btn-obsidian">
+              GitHub (@santiloc-hub) ↗
+            </a>
           </div>
         </section>
       </main>
 
-      {/* INTERACTIVE PDF RESUME MODAL */}
+      {/* EMBEDDED PDF RESUME VIEWER MODAL */}
       {cvModalOpen && (
         <div className="cv-modal-backdrop" onClick={() => setCvModalOpen(false)}>
           <div className="cv-modal-window" onClick={(e) => e.stopPropagation()}>
             <div className="cv-modal-header">
-              <div className="cv-modal-title-group">
-                <IconDocument />
-                <span>{t.modalTitle}</span>
-              </div>
-
-              <div className="cv-modal-controls">
+              <span className="cv-modal-title">{t.modalTitle}</span>
+              <div className="cv-modal-actions">
                 <button
                   type="button"
-                  className={cvModalLang === "es" ? "lang-btn active" : "lang-btn"}
                   onClick={() => setCvModalLang("es")}
+                  className={cvModalLang === "es" ? "hud-lang-btn active" : "hud-lang-btn"}
                 >
-                  Español (ES)
+                  ES
                 </button>
                 <button
                   type="button"
-                  className={cvModalLang === "en" ? "lang-btn active" : "lang-btn"}
                   onClick={() => setCvModalLang("en")}
+                  className={cvModalLang === "en" ? "hud-lang-btn active" : "hud-lang-btn"}
                 >
-                  English (EN)
+                  EN
                 </button>
                 <a
                   href={`${cleanBase}/CV_${cvModalLang.toUpperCase()}.pdf`}
                   download
-                  className="btn-modal-download"
+                  className="btn-gold-sm"
                 >
                   Download PDF ↗
                 </a>
                 <button
                   type="button"
-                  className="btn-modal-close"
                   onClick={() => setCvModalOpen(false)}
+                  className="btn-close-modal"
                 >
                   {t.closeModal} ✕
                 </button>
               </div>
             </div>
-
             <iframe
               src={`${cleanBase}/CV_${cvModalLang.toUpperCase()}.pdf`}
               title="Santiago Montaña Resume PDF"
@@ -733,16 +733,11 @@ export default function ExperiencePortal({ profileData, baseUrl = "/santiloc-hub
         </div>
       )}
 
-      <footer className="portal-footer">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <span className="brand-mark sm">SM</span>
-            <span>{meta.name}</span>
-          </div>
-          <p className="footer-sync">{t.autoSyncLabel}</p>
-          <a href={`mailto:${meta.email}`} className="footer-mail">
-            {meta.email}
-          </a>
+      <footer className="js-footer">
+        <div className="js-footer-inner">
+          <span>© {new Date().getFullYear()} {meta.name}</span>
+          <span>Auto-synced from cv_data.yaml + GitHub API</span>
+          <span>{clockText}</span>
         </div>
       </footer>
     </div>

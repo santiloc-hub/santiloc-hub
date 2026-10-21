@@ -93,7 +93,6 @@ def _t(obj: dict, key: str, lang: str) -> str:
 
 def render_banner_svg(data: dict) -> str:
     meta = data["meta"]
-    name = _esc(meta["name"].upper())
     current_job = data["experience"][0]
     current_role_es = _esc(current_job["title_es"])
     current_company = _esc(current_job["company"].split("—")[0].strip())
@@ -114,27 +113,26 @@ def render_banner_svg(data: dict) -> str:
         ],
     )
 
-    # Position dynamic pill badges across 2 rows on the left side
     badge_elements = []
-    x_cursor = 56
-    y_cursor = 266
+    x_cursor = 64
+    y_cursor = 276
     for idx, b_text in enumerate(badges):
         label = _esc(b_text)
-        width = max(78, int(len(b_text) * 7.6 + 26))
-        if x_cursor + width > 770:
-            x_cursor = 56
+        width = max(78, int(len(b_text) * 7.5 + 28))
+        if x_cursor + width > 780:
+            x_cursor = 64
             y_cursor += 38
 
-        is_accent = idx in (0, 2, 5, 7)
-        stroke = "#06b6d4" if is_accent else "#334155"
-        fill = "rgba(6, 182, 212, 0.12)" if is_accent else "rgba(15, 23, 42, 0.78)"
-        text_color = "#67e8f9" if is_accent else "#e2e8f0"
+        is_gold = idx in (0, 2, 5, 7)
+        stroke = "#ffd98e" if is_gold else "#2e2d2b"
+        fill = "rgba(255, 217, 142, 0.10)" if is_gold else "#191919"
+        text_color = "#ffd98e" if is_gold else "#eaeaea"
 
         badge_elements.append(
             f'<g transform="translate({x_cursor}, {y_cursor})">'
-            f'<rect width="{width}" height="28" rx="14" fill="{fill}" stroke="{stroke}" stroke-width="1.2"/>'
-            f'<text x="{width / 2:.1f}" y="18.5" fill="{text_color}" font-family="\'Segoe UI\', Inter, system-ui, sans-serif" '
-            f'font-size="12" font-weight="600" text-anchor="middle">{label}</text>'
+            f'<rect width="{width}" height="28" rx="14" fill="{fill}" stroke="{stroke}" stroke-width="1"/>'
+            f'<text x="{width / 2:.1f}" y="18.5" fill="{text_color}" font-family="Inter, \'Segoe UI\', system-ui, sans-serif" '
+            f'font-size="11.5" font-weight="600" text-anchor="middle">{label}</text>'
             f"</g>"
         )
         x_cursor += width + 10
@@ -147,131 +145,110 @@ def render_banner_svg(data: dict) -> str:
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#050814"/>
-      <stop offset="52%" stop-color="#0b132b"/>
-      <stop offset="100%" stop-color="#091e3a"/>
+    <linearGradient id="bgObsidian" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0e0e"/>
+      <stop offset="55%" stop-color="#141313"/>
+      <stop offset="100%" stop-color="#191919"/>
     </linearGradient>
-    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="50%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#34d399"/>
-    </linearGradient>
-    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.92"/>
-      <stop offset="100%" stop-color="#090d16" stop-opacity="0.96"/>
-    </linearGradient>
-    <radialGradient id="glowCyan" cx="78%" cy="28%" r="45%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    <radialGradient id="goldGlow" cx="78%" cy="22%" r="48%">
+      <stop offset="0%" stop-color="#ffd98e" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ffd98e" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glowEmerald" cx="18%" cy="85%" r="40%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
-      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#1e293b" stroke-width="0.7" stroke-opacity="0.55"/>
-    </pattern>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd98e"/>
+      <stop offset="65%" stop-color="#fcfcfc" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0f0e0e" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background Layer -->
-  <rect width="1280" height="380" rx="18" fill="url(#bgGrad)"/>
-  <rect width="1280" height="380" rx="18" fill="url(#grid)"/>
-  <rect width="1280" height="380" rx="18" fill="url(#glowCyan)"/>
-  <rect width="1280" height="380" rx="18" fill="url(#glowEmerald)"/>
-  <rect x="1" y="1" width="1278" height="378" rx="17" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+  <!-- Warm Obsidian Canvas (#0f0e0e) -->
+  <rect width="1280" height="380" rx="20" fill="url(#bgObsidian)"/>
+  <rect width="1280" height="380" rx="20" fill="url(#goldGlow)"/>
+  <rect x="1" y="1" width="1278" height="378" rx="19" fill="none" stroke="#262524" stroke-width="1.5"/>
 
-  <!-- Decorative Data Pipeline Constellation -->
-  <g stroke="#0ea5e9" stroke-opacity="0.22" stroke-width="1.2" fill="none">
-    <path d="M 680 60 L 760 110 L 830 70 L 920 130"/>
-    <path d="M 760 110 L 740 210 L 840 260"/>
-    <circle cx="680" cy="60" r="3.5" fill="#22d3ee"/>
-    <circle cx="760" cy="110" r="4.5" fill="#34d399"/>
-    <circle cx="830" cy="70" r="3" fill="#38bdf8"/>
-    <circle cx="740" cy="210" r="3.5" fill="#22d3ee"/>
+  <!-- Top Editorial HUD Bar -->
+  <text x="64" y="46" fill="#999999" font-family="Inter, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" letter-spacing="1.8">
+    PORTFOLIO &amp; EXPERIENCE HUB  //  BOGOTÁ, CO
+  </text>
+  <g transform="translate(430, 30)">
+    <rect width="340" height="24" rx="12" fill="#191919" stroke="#2e2d2b" stroke-width="1"/>
+    <circle cx="14" cy="12" r="4" fill="#ffd98e"/>
+    <text x="26" y="16" fill="#fcfcfc" font-family="Inter, 'Segoe UI', sans-serif" font-size="11" font-weight="500">
+      {current_role_es} @ {current_company}
+    </text>
   </g>
+  <line x1="64" y1="64" x2="1216" y2="64" stroke="#242322" stroke-width="1"/>
 
-  <!-- Left Content Column -->
-  <!-- Active Role Status Pill -->
-  <g transform="translate(56, 42)">
-    <rect width="390" height="30" rx="15" fill="#0f172a" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.7"/>
-    <circle cx="18" cy="15" r="5" fill="#10b981"/>
-    <circle cx="18" cy="15" r="8" fill="none" stroke="#10b981" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="34" y="19.5" fill="#a7f3d0" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.4">
-      ACTIVE · {current_role_es} @ {current_company}
+  <!-- Avatar Squircle Badge + Champagne Gold Name -->
+  <g transform="translate(64, 88)">
+    <rect width="58" height="58" rx="14" fill="#191919" stroke="#ffd98e" stroke-width="1.5"/>
+    <text x="29" y="36" fill="#ffd98e" font-family="Inter, 'Segoe UI', sans-serif" font-size="21" font-weight="800" text-anchor="middle">
+      SM
     </text>
   </g>
 
-  <!-- Name & Headline -->
-  <text x="56" y="128" fill="#f8fafc" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="48" font-weight="800" letter-spacing="1">
+  <text x="138" y="114" fill="#ffd98e" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="-0.3">
     Santiago Montaña
   </text>
-  <rect x="56" y="142" width="145" height="4" rx="2" fill="url(#accentGrad)"/>
-
-  <text x="56" y="175" fill="#38bdf8" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="20" font-weight="700">
-    Data Scientist  ·  Data &amp; AI Engineer  ·  Electronic Engineer
+  <text x="138" y="138" fill="#999999" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="13.5" font-weight="500">
+    Data Scientist, Data &amp; AI Engineer &amp; Electronic Engineer (UPTC)
   </text>
 
-  <text x="56" y="205" fill="#94a3b8" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="14" font-weight="400">
-    Pipelines ETL/ELT (Snowflake, Airflow, dbt) · Modelos ML &amp; Monte Carlo · Agentes MCP &amp; LLMs · Cloud IaC (AWS + Terraform)
+  <!-- Editorial Headline (Jake Sinclair Style) -->
+  <text x="64" y="188" fill="#fcfcfc" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="31" font-weight="800" letter-spacing="-0.8">
+    Shaping scalable data pipelines, predictive ML
+  </text>
+  <text x="64" y="226" fill="#fcfcfc" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="31" font-weight="800" letter-spacing="-0.8">
+    models &amp; autonomous AI agents in production.
   </text>
 
-  <text x="56" y="232" fill="#64748b" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="12.5" font-weight="500">
-    📍 {location}   |   🎓 Especialista en Analítica Estratégica de Datos (UPTC)   |   🌐 santiloc-hub.github.io/santiloc-hub
-  </text>
+  <rect x="64" y="246" width="220" height="2" fill="url(#goldLine)"/>
 
-  <!-- Dynamic Stack Badges -->
+  <!-- Dynamic Stack Pills -->
   {badges_svg}
 
-  <!-- Right Column: Live Telemetry Terminal Card -->
-  <g transform="translate(815, 36)">
-    <rect width="415" height="308" rx="14" fill="url(#cardGrad)" stroke="#1e293b" stroke-width="1.5"/>
-    <!-- Terminal Top Bar -->
-    <rect width="415" height="34" rx="14" fill="#0f172a"/>
-    <circle cx="20" cy="17" r="5.5" fill="#ef4444"/>
-    <circle cx="38" cy="17" r="5.5" fill="#f59e0b"/>
-    <circle cx="56" cy="17" r="5.5" fill="#10b981"/>
-    <text x="215" y="21" fill="#64748b" font-family="Consolas, 'Courier New', monospace" font-size="11.5" text-anchor="middle">
-      santiloc-hub // experience_telemetry.yml
+  <!-- Right Column: Editorial Capabilities & Telemetry Card -->
+  <g transform="translate(820, 84)">
+    <rect width="396" height="262" rx="16" fill="#151414" stroke="#292827" stroke-width="1.2"/>
+    <text x="24" y="34" fill="#ffd98e" font-family="Consolas, 'Courier New', monospace" font-size="11" font-weight="700" letter-spacing="1.4">
+      01 // CORE ARCHITECTURE
     </text>
+    <text x="372" y="34" fill="#7c7c7c" font-family="Consolas, 'Courier New', monospace" font-size="11" text-anchor="end">
+      LIVE SYNC
+    </text>
+    <line x1="24" y1="48" x2="372" y2="48" stroke="#242322" stroke-width="1"/>
 
-    <!-- Terminal Body -->
-    <g font-family="Consolas, 'Courier New', monospace" font-size="12.2">
-      <text x="22" y="60" fill="#38bdf8">$ cat profile_stack.yaml</text>
+    <g font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5">
+      <text x="24" y="76" fill="#7c7c7c" font-weight="600">DATA &amp; ELT</text>
+      <text x="130" y="76" fill="#fcfcfc" font-weight="600">Snowflake · Airflow · dbt · Meltano</text>
 
-      <text x="22" y="86" fill="#94a3b8">role:</text>
-      <text x="72" y="86" fill="#f8fafc" font-weight="700">"Jr. Data Scientist &amp; AI Dev"</text>
+      <text x="24" y="104" fill="#7c7c7c" font-weight="600">ML &amp; SIMS</text>
+      <text x="130" y="104" fill="#fcfcfc" font-weight="600">Scikit-learn · Monte Carlo · MLflow</text>
 
-      <text x="22" y="110" fill="#94a3b8">data_ops:</text>
-      <text x="95" y="110" fill="#34d399">[Snowflake, Airflow, dbt, Meltano]</text>
+      <text x="24" y="132" fill="#7c7c7c" font-weight="600">AI &amp; MCP</text>
+      <text x="130" y="132" fill="#ffd98e" font-weight="600">MCP Agents · Claude · ElevenLabs</text>
 
-      <text x="22" y="134" fill="#94a3b8">ml_ai:</text>
-      <text x="75" y="134" fill="#67e8f9">[Scikit-learn, MLflow, Monte Carlo]</text>
+      <text x="24" y="160" fill="#7c7c7c" font-weight="600">CLOUD IaC</text>
+      <text x="130" y="160" fill="#fcfcfc" font-weight="600">AWS (EC2, S3, IAM) · Terraform · FastAPI</text>
+    </g>
 
-      <text x="22" y="158" fill="#94a3b8">agents:</text>
-      <text x="82" y="158" fill="#c084fc">[MCP Protocol, LLMs, ElevenLabs]</text>
+    <line x1="24" y1="180" x2="372" y2="180" stroke="#242322" stroke-width="1"/>
 
-      <text x="22" y="182" fill="#94a3b8">cloud_iac:</text>
-      <text x="98" y="182" fill="#fbbf24">[AWS, Terraform, Docker, FastAPI]</text>
-
-      <line x1="22" y1="202" x2="393" y2="202" stroke="#1e293b" stroke-width="1"/>
-
-      <!-- Key Metrics Row inside Card -->
-      <g transform="translate(22, 218)">
-        <rect width="112" height="66" rx="8" fill="#0f172a" stroke="#1e293b"/>
-        <text x="56" y="29" fill="#22d3ee" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="800" text-anchor="middle">{s0_val}</text>
-        <text x="56" y="49" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10.5" text-anchor="middle">Roles Datos &amp; IA</text>
-      </g>
-      <g transform="translate(151, 218)">
-        <rect width="112" height="66" rx="8" fill="#0f172a" stroke="#1e293b"/>
-        <text x="56" y="29" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="800" text-anchor="middle">{s1_val}</text>
-        <text x="56" y="49" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10.5" text-anchor="middle">Pipelines &amp; Modelos</text>
-      </g>
-      <g transform="translate(280, 218)">
-        <rect width="112" height="66" rx="8" fill="#0f172a" stroke="#1e293b"/>
-        <text x="56" y="29" fill="#c084fc" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="800" text-anchor="middle">{s2_val}</text>
-        <text x="56" y="49" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10.5" text-anchor="middle">Certificaciones</text>
-      </g>
+    <!-- Minimalist Gold/Obsidian Metrics -->
+    <g transform="translate(24, 194)">
+      <rect width="108" height="50" rx="10" fill="#191919" stroke="#262524"/>
+      <text x="54" y="24" fill="#ffd98e" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle">{s0_val}</text>
+      <text x="54" y="40" fill="#999999" font-family="Inter, sans-serif" font-size="9.5" text-anchor="middle">ROLES DATOS &amp; IA</text>
+    </g>
+    <g transform="translate(144, 194)">
+      <rect width="108" height="50" rx="10" fill="#191919" stroke="#262524"/>
+      <text x="54" y="24" fill="#fcfcfc" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle">{s1_val}</text>
+      <text x="54" y="40" fill="#999999" font-family="Inter, sans-serif" font-size="9.5" text-anchor="middle">PIPELINES &amp; MODELOS</text>
+    </g>
+    <g transform="translate(264, 194)">
+      <rect width="108" height="50" rx="10" fill="#191919" stroke="#262524"/>
+      <text x="54" y="24" fill="#ffd98e" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle">{s2_val}</text>
+      <text x="54" y="40" fill="#999999" font-family="Inter, sans-serif" font-size="9.5" text-anchor="middle">CERTIFICACIONES</text>
     </g>
   </g>
 </svg>

@@ -9,6 +9,7 @@ import {
   filterExperienceByTag,
   getLocalizedText,
   getArchitectureBlueprints,
+  getCapabilitiesPillars,
 } from "../src/utils/portalFilter.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -51,11 +52,13 @@ test("getLocalizedText switches cleanly between ES and EN", () => {
   assert.equal(getLocalizedText(sample, "title", "en"), "Data Scientist");
 });
 
-test("getArchitectureBlueprints returns 3 interactive telemetry blueprints for Hero panel", () => {
-  const blueprintsEs = getArchitectureBlueprints("es");
-  assert.equal(blueprintsEs.length, 3);
-  assert.equal(blueprintsEs[0].id, "pipelines");
-  assert.equal(blueprintsEs[1].id, "agents");
-  assert.equal(blueprintsEs[2].id, "cloud");
-  assert.ok(blueprintsEs[0].nodes.length >= 4);
+test("getCapabilitiesPillars returns 6 editorial pillars in Jake Sinclair style", () => {
+  const pillarsEs = getCapabilitiesPillars("es");
+  const pillarsEn = getCapabilitiesPillars("en");
+  assert.equal(pillarsEs.length, 6);
+  assert.equal(pillarsEn.length, 6);
+  assert.equal(pillarsEs[0].number, "01");
+  assert.ok(pillarsEs[0].title.length > 5);
+  assert.ok(pillarsEs[0].description.length > 20);
+  assert.ok(Array.isArray(pillarsEs[0].tags));
 });

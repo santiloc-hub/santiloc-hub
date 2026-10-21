@@ -5,7 +5,7 @@
   <br/>
 
   <!--CV_STATUS:start-->
-  <!-- status: Building Data Pipelines, ML Models & Autonomous AI Agents @ CIM DATA IA | updated: 2026-10-21 20:06 UTC -->
+  <!-- status: Building Data Pipelines, ML Models & Autonomous AI Agents @ CIM DATA IA | updated: 2026-10-21 20:22 UTC -->
   <p align="center">
     <a href="https://santiloc-hub.github.io/santiloc-hub/"><img src="https://img.shields.io/badge/🌐_PORTAL_INTERACTIVO-Ver_Experiencia_En_Vivo-06b6d4?style=for-the-badge&logoColor=white" alt="Portal Interactivo" /></a>
     <a href="./CV_ES.pdf"><img src="https://img.shields.io/badge/📄_Hoja_de_Vida_(ES)-Descargar_PDF-10b981?style=for-the-badge" alt="CV Español" /></a>
@@ -117,5 +117,5 @@
 ---
 
 <div align="center">
-  <sub>⚡ <b>Ecosistema Auto-Actualizable:</b> Este perfil, la portada SVG, el <a href="https://santiloc-hub.github.io/santiloc-hub/">Portal Web en Astro + React</a> y los CVs en PDF (<a href="./CV_ES.pdf">ES</a> / <a href="./CV_EN.pdf">EN</a>) se generan automáticamente desde <a href="./cv_data.yaml"><code>cv_data.yaml</code></a> mediante GitHub Actions. Última sincronización: <code>2026-10-21 20:06 UTC</code>.</sub>
+  <sub>⚡ <b>Ecosistema Auto-Actualizable:</b> Este perfil, la portada SVG, el <a href="https://santiloc-hub.github.io/santiloc-hub/">Portal Web en Astro + React</a> y los CVs en PDF (<a href="./CV_ES.pdf">ES</a> / <a href="./CV_EN.pdf">EN</a>) se generan automáticamente desde <a href="./cv_data.yaml"><code>cv_data.yaml</code></a> mediante GitHub Actions. Última sincronización: <code>2026-10-21 20:22 UTC</code>.</sub>
 </div>

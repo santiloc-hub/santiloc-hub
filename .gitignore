@@ -3,5 +3,6 @@ __pycache__/
 .pytest_cache/
 portal/node_modules/
 portal/dist/
+portal/public/
 portal/.astro/
 .DS_Store

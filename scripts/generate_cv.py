@@ -141,7 +141,7 @@ def render_banner_svg(data: dict) -> str:
     stats = meta.get("stats", [])
     s0_val = _esc(stats[0]["value"]) if len(stats) > 0 else "3"
     s1_val = _esc(stats[1]["value"]) if len(stats) > 1 else "15+"
-    s2_val = _esc(stats[2]["value"]) if len(stats) > 2 else "13+"
+    s2_val = _esc(stats[2]["value"]) if len(stats) > 2 else "8+"
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" width="100%" height="100%">
   <defs>
@@ -362,7 +362,10 @@ def render_readme(data: dict, github_repos: list | None = None) -> str:
 
     # Education & Certifications
     edu_lines = [
-        f"- 🎓 **{e['degree_es']}** — *{e['institution']}*" for e in data["education"]
+        f"- 🎓 **{e['degree_es']}** — *{e['institution']}* ({e['period']})"
+        if e.get("period")
+        else f"- 🎓 **{e['degree_es']}** — *{e['institution']}*"
+        for e in data["education"]
     ]
     edu_md = "\n".join(edu_lines)
 
@@ -728,10 +731,12 @@ def render_education(edu: list, lang: str) -> str:
     parts = []
     for e in edu:
         degree = _t(e, "degree", lang)
+        period = e.get("period_en") if lang == "en" and e.get("period_en") else e.get("period", "")
+        inst_line = f"{_esc(e['institution'])} · {_esc(period)}" if period else _esc(e["institution"])
         parts.append(
             f'<div class="edu-item">'
             f'<div class="edu-degree">{_esc(degree)}</div>'
-            f'<div class="edu-inst">{_esc(e["institution"])}</div>'
+            f'<div class="edu-inst">{inst_line}</div>'
             f"</div>"
         )
     return "\n".join(parts)
@@ -759,18 +764,12 @@ def render_courses(courses: list) -> str:
     return "\n".join(parts)
 
 
-def generate_pdf(data: dict, lang: str, output_path: Path) -> bool:
-    try:
-        from weasyprint import HTML
-    except Exception as exc:
-        print(f"[WARN] WeasyPrint not available in current OS environment ({exc}); skipping local PDF write for {output_path.name}.")
-        return False
-
+def build_resume_html(data: dict, lang: str) -> str:
     lbl = LABELS[lang]
     meta = data["meta"]
     location = meta.get(f"location_{lang}") or meta.get("location_es", "Colombia")
 
-    html = HTML_TEMPLATE.format(
+    return HTML_TEMPLATE.format(
         lang_code=lang,
         name=_esc(meta["name"]),
         tagline=_esc(meta[f"tagline_{lang}"]),
@@ -795,9 +794,59 @@ def generate_pdf(data: dict, lang: str, output_path: Path) -> bool:
         courses_html=render_courses(data["courses"]),
     )
 
-    HTML(string=html, base_url=str(ROOT)).write_pdf(str(output_path))
-    print(f"[OK] Generated PDF: {output_path.relative_to(ROOT)}")
-    return True
+
+def generate_pdf(data: dict, lang: str, output_path: Path) -> bool:
+    html = build_resume_html(data, lang)
+    try:
+        from weasyprint import HTML
+
+        HTML(string=html, base_url=str(ROOT)).write_pdf(str(output_path))
+        print(f"[OK] Generated PDF (WeasyPrint): {output_path.relative_to(ROOT)}")
+        return True
+    except Exception as exc:
+        import subprocess
+        import tempfile
+
+        browser_candidates = [
+            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        ]
+        browser = next((b for b in browser_candidates if Path(b).exists()), None)
+        if not browser:
+            print(
+                f"[WARN] Neither WeasyPrint ({exc}) nor headless Chromium/Edge available; skipping {output_path.name}."
+            )
+            return False
+
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".html", encoding="utf-8", delete=False
+        ) as tmp:
+            tmp.write(html)
+            tmp_path = Path(tmp.name)
+
+        try:
+            subprocess.run(
+                [
+                    browser,
+                    "--headless",
+                    "--disable-gpu",
+                    "--no-pdf-header-footer",
+                    f"--print-to-pdf={output_path}",
+                    tmp_path.as_uri(),
+                ],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=30,
+            )
+            print(f"[OK] Generated PDF (Chromium/Edge): {output_path.relative_to(ROOT)}")
+            return True
+        except Exception as browser_exc:
+            print(f"[WARN] Headless PDF generation failed ({browser_exc}); skipping {output_path.name}.")
+            return False
+        finally:
+            tmp_path.unlink(missing_ok=True)
 
 
 def export_portal_json(data: dict, github_repos: list, output_path: Path) -> None:

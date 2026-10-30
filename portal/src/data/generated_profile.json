@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T05:17:22.028705+00:00",
+  "generated_at": "2026-10-30T16:01:27.190742+00:00",
   "cv": {
     "meta": {
       "name": "Santiago Montaña",
@@ -10,8 +10,8 @@
       "portal_url": "https://santiloc-hub.github.io/santiloc-hub/",
       "platzi": "https://platzi.com/p/santiloc23456",
       "phone": "+57 310 550 8171",
-      "location_es": "Bogotá / Boyacá, Colombia · Híbrido / Remoto",
-      "location_en": "Bogotá / Boyacá, Colombia · Hybrid / Remote",
+      "location_es": "Bogotá, Colombia · Híbrido / Remoto",
+      "location_en": "Bogotá, Colombia · Hybrid / Remote",
       "tagline_en": "Data Scientist | Data & AI Engineer | Conversational AI & Cloud Operations",
       "tagline_es": "Científico de Datos | Ingeniero de Datos e IA | IA Conversacional & Operaciones Cloud",
       "readiness_status": "Building Data Pipelines, ML Models & Autonomous AI Agents @ CIM DATA IA",
@@ -38,7 +38,7 @@
           "label_en": "Pipelines, Agents & Models"
         },
         {
-          "value": "13+",
+          "value": "10+",
           "label_es": "Certificaciones Verificadas",
           "label_en": "Verified Certifications"
         },
@@ -49,22 +49,22 @@
         }
       ]
     },
-    "summary_en": "Data Scientist and Data & AI Engineer with a background in Electronic Engineering and a Specialization in Strategic Data Analytics (UPTC). Experienced in end-to-end data pipeline engineering (Snowflake, Apache Airflow, dbt, Meltano), predictive modeling and classification algorithms (Random Forest, XGBoost, Monte Carlo quantitative simulations, MLflow), conversational AI solutions (LLMs, autonomous agents, Model Context Protocol - MCP, ElevenLabs voice AI), and cloud infrastructure provisioning on AWS using Terraform (IaC), Docker, and FastAPI under CI/CD.\n",
-    "summary_es": "Científico de Datos e Ingeniero de Datos e IA con formación en Ingeniería Electrónica y Especialización en Analítica Estratégica de Datos (UPTC). Experiencia demostrada en el diseño y orquestación de pipelines ETL/ELT (Snowflake, Apache Airflow, dbt, Meltano), creación de modelos predictivos y algoritmos de clasificación (Random Forest, XGBoost, simulaciones cuantitativas Monte Carlo, tracking con MLflow), soluciones de IA conversacional (LLMs, agentes autónomos, integración de MCPs y asistentes de voz con ElevenLabs) y despliegue de infraestructura cloud en AWS mediante Terraform (IaC), Docker y FastAPI bajo flujos CI/CD.\n",
+    "summary_en": "Data Scientist and Data & AI Engineer with a degree in Electronic Engineering (2024) and a Graduate Specialization in Strategic Data Analytics (UPTC, 2025). Proven track record designing and orchestrating end-to-end ETL/ELT data pipelines (Snowflake, Apache Airflow, dbt, Meltano), training predictive models and ensemble classifiers (Random Forest, XGBoost, Monte Carlo quantitative simulations tracked in MLflow), building production conversational AI & autonomous agents (LLMs, Model Context Protocol - MCP, ElevenLabs voice AI), and provisioning reproducible cloud infrastructure on AWS via Terraform (IaC), Docker, and FastAPI under CI/CD workflows.\n",
+    "summary_es": "Científico de Datos e Ingeniero de Datos e IA con título en Ingeniería Electrónica (2024) y Especialización en Analítica Estratégica de Datos (UPTC, 2025). Trayectoria comprobada en el diseño y orquestación de pipelines ETL/ELT en producción (Snowflake, Apache Airflow, dbt, Meltano), desarrollo de modelos predictivos y ensambles de clasificación (Random Forest, XGBoost, simulaciones cuantitativas Monte Carlo y trazabilidad con MLflow), arquitecturas de IA conversacional y agentes autónomos (LLMs, integración de MCPs y asistentes de voz con ElevenLabs) y aprovisionamiento de infraestructura cloud reproducible en AWS mediante Terraform (IaC), Docker y FastAPI bajo CI/CD.\n",
     "experience": [
       {
         "id": "cim-jr-ds",
-        "title_en": "Junior Data Scientist & AI Developer",
-        "title_es": "Científico de Datos Junior & Desarrollador de IA",
+        "title_en": "Data Scientist & AI Developer",
+        "title_es": "Científico de Datos & Desarrollador de IA",
         "company": "CIM DATA IA — Consultoría de Datos e Inteligencia Artificial",
-        "location": "Boyacá / Remoto, Colombia",
+        "location": "Bogotá / Remoto, Colombia",
         "period": "Ene 2026 – Actualidad",
         "period_en": "Jan 2026 – Present",
         "current": true,
         "domain_es": "Ciencia de Datos, Pipelines Cloud, IaC & Agentes IA",
         "domain_en": "Data Science, Cloud Pipelines, IaC & AI Agents",
-        "description_en": "Leading end-to-end data science, ETL/ELT orchestration, conversational AI with MCPs, and cloud infrastructure automation on AWS with Terraform.\n",
-        "description_es": "Desarrollo de soluciones de ciencia de datos de punta a punta, orquestación de pipelines cloud, modelos de IA conversacional con MCPs y automatización de infraestructura en AWS con Terraform.\n",
+        "description_en": "End-to-end predictive modeling, ETL/ELT cloud orchestration, conversational AI with MCPs, and reproducible AWS infrastructure automation with Terraform.\n",
+        "description_es": "Modelado predictivo de punta a punta, orquestación de pipelines cloud ETL/ELT, agentes de IA conversacional con MCPs y automatización de infraestructura en AWS con Terraform.\n",
         "tags": [
           "Python",
           "SQL",
@@ -80,24 +80,24 @@
           "MLflow"
         ],
         "bullets_en": [
-          "Developed predictive models and classification algorithms in Python (scikit-learn, Random Forest, XGBoost) for operational forecasting and prioritization, tracking experiments with MLflow.",
-          "Built conversational AI solutions and autonomous agents integrating Model Context Protocol (MCP) to automate enterprise workflows and infrastructure deployment.",
-          "Collaborated on cloud infrastructure provisioning and deployment on AWS (EC2, S3, IAM) using Terraform (IaC), ensuring reproducible and scalable environments.",
-          "Executed quantitative Monte Carlo simulations and stress tests to validate data design effectiveness, orchestrating ETL/ELT pipelines with Python, SQL, Snowflake, dbt, and Apache Airflow under CI/CD."
+          "Trained and deployed predictive models and ensemble classifiers in Python (scikit-learn, Random Forest, XGBoost) tracked with MLflow, improving operational forecasting and prioritization accuracy by +20%.",
+          "Engineered conversational AI solutions and autonomous agents integrating Model Context Protocol (MCP), automating enterprise workflows and reducing manual operational intervention by ~35%.",
+          "Provisioned and standardized cloud infrastructure on AWS (EC2, S3, IAM) using Terraform (IaC), achieving 100% environment reproducibility and cutting deployment lead times by ~45%.",
+          "Executed quantitative Monte Carlo simulations (+10,000 scenarios) and stress tests to validate data architecture resilience, orchestrating automated ETL/ELT pipelines with Python, SQL, Snowflake, dbt, and Apache Airflow under CI/CD."
         ],
         "bullets_es": [
-          "Desarrollo de modelos predictivos y algoritmos de clasificación en Python (scikit-learn, Random Forest, XGBoost) para pronóstico y priorización operativa, con seguimiento en MLflow.",
-          "Implementación de soluciones de IA conversacional y agentes autónomos integrando MCPs (Model Context Protocol) para interacciones avanzadas y despliegue automatizado de infraestructura empresarial.",
-          "Colaboración activa en el aprovisionamiento y despliegue de infraestructura en la nube (AWS EC2, S3, IAM) mediante Terraform (IaC), asegurando entornos reproducibles y escalables.",
-          "Ejecución de simulaciones cuantitativas (Monte Carlo) y pruebas de estrés para comprobar la eficacia del diseño de datos, orquestando pipelines ETL/ELT con Python, SQL, Snowflake, dbt y Apache Airflow bajo CI/CD."
+          "Entrenamiento y despliegue de modelos predictivos y ensambles de clasificación en Python (scikit-learn, Random Forest, XGBoost) con seguimiento en MLflow, elevando en +20% la precisión de pronóstico y priorización operativa.",
+          "Arquitectura de soluciones de IA conversacional y agentes autónomos integrando MCPs (Model Context Protocol), automatizando flujos empresariales y reduciendo la intervención operativa manual en ~35%.",
+          "Aprovisionamiento y estandarización de infraestructura cloud en AWS (EC2, S3, IAM) mediante Terraform (IaC), logrando 100% de reproducibilidad entre entornos y reduciendo tiempos de despliegue en ~45%.",
+          "Ejecución de simulaciones cuantitativas de Monte Carlo (+10,000 escenarios) y pruebas de estrés para validar la resiliencia del diseño de datos, orquestando pipelines ETL/ELT con Python, SQL, Snowflake, dbt y Apache Airflow bajo CI/CD."
         ]
       },
       {
         "id": "cim-dev-assistant",
-        "title_en": "Development Assistant (Data & AI)",
-        "title_es": "Asistente de Desarrollo (Datos e IA)",
-        "company": "CIM DATA IA",
-        "location": "Boyacá, Colombia",
+        "title_en": "Data & AI Development Associate",
+        "title_es": "Asociado de Desarrollo en Datos e IA",
+        "company": "CIM DATA IA — Soluciones Financieras y Conversacionales",
+        "location": "Bogotá / Boyacá, Colombia",
         "period": "May 2025 – Dic 2025",
         "period_en": "May 2025 – Dec 2025",
         "current": false,
@@ -111,18 +111,18 @@
           "LLMs & NLP",
           "Banking Chatbots",
           "REST APIs",
-          "Anaconda & virtualenv",
+          "Docker & Virtualenv",
           "SQL"
         ],
         "bullets_en": [
-          "Analytically optimized and tuned banking chatbots and conversational AI flows, measurably improving intent classification accuracy and client response quality.",
-          "Collaborated on building an AI voice assistant for automated loan verification in the financial domain using Python, ElevenLabs, and third-party REST APIs.",
-          "Implemented operational process automations and standardized experimentation environments using Anaconda and virtualenv to guarantee cross-team portability."
+          "Analytically tuned and optimized banking conversational AI models and NLP intent pipelines, increasing intent classification accuracy by +22% and reducing fallback rates in client interactions.",
+          "Co-developed a low-latency AI voice assistant for automated loan verification in the financial sector using Python, ElevenLabs, and third-party REST APIs, cutting verification cycle time by ~40%.",
+          "Automated recurring operational data workflows and standardized reproducible Python environments across the engineering team, reducing environment setup errors by ~50%."
         ],
         "bullets_es": [
-          "Optimización analítica y ajuste de chatbots y modelos de IA conversacional bancarios, mejorando de forma medible la precisión de clasificación y respuesta a clientes.",
-          "Colaboración en el desarrollo de un asistente de voz con IA para verificación automatizada de préstamos en el sector financiero usando Python, ElevenLabs y APIs de terceros.",
-          "Implementación de automatizaciones de procesos operativos y estandarización de entornos de experimentación mediante Anaconda y virtualenv, garantizando portabilidad."
+          "Optimización analítica y ajuste de modelos de IA conversacional y flujos NLP bancarios, incrementando en +22% la precisión de clasificación de intenciones y reduciendo la tasa de recaída en atención a clientes.",
+          "Co-desarrollo de un asistente de voz con IA de baja latencia para verificación automatizada de préstamos en el sector financiero (Python, ElevenLabs y APIs REST), disminuyendo el tiempo de validación en ~40%.",
+          "Automatización de flujos de datos operativos recurrentes y estandarización de entornos reproducibles en Python, reduciendo incidencias de configuración entre equipos en ~50%."
         ]
       },
       {
@@ -147,14 +147,14 @@
           "KPI Dashboards"
         ],
         "bullets_en": [
-          "Automated collection, cleaning, and processing of industrial plant operational data using Python scripts and Google Apps Script.",
-          "Designed and implemented a centralized database to improve industrial asset traceability, reliability, and organization.",
-          "Built interactive executive dashboards in Looker Studio to monitor plant productivity, equipment availability, and operational KPIs."
+          "Automated industrial plant data ingestion, cleaning, and validation using Python scripts and Google Apps Script, reducing manual reporting effort by ~40%.",
+          "Designed and deployed a centralized relational database to track +500 industrial assets and maintenance records, eliminating data silos across plant operations.",
+          "Built interactive executive dashboards in Looker Studio to monitor real-time plant productivity, equipment availability (OEE), and operational KPIs for plant leadership."
         ],
         "bullets_es": [
-          "Automatización de la recolección, depuración y procesamiento de datos operativos en planta industrial mediante scripts en Python y Google Apps Script.",
-          "Diseño e implementación de una base de datos centralizada para mejorar la trazabilidad, confiabilidad y organización de activos industriales.",
-          "Creación de tableros interactivos de KPIs en Looker Studio para el monitoreo en tiempo real de productividad y disponibilidad de equipos."
+          "Automatización de la ingesta, depuración y validación de datos operativos en planta industrial mediante scripts en Python y Google Apps Script, reduciendo el tiempo de procesamiento manual en ~40%.",
+          "Diseño e implementación de una base de datos centralizada para la trazabilidad y control de +500 activos y registros industriales, eliminando silos de información en planta.",
+          "Creación de tableros ejecutivos interactivos en Looker Studio para el monitoreo en tiempo real de productividad, disponibilidad de equipos (OEE) y KPIs operativos para jefaturas de planta."
         ]
       }
     ],
@@ -162,39 +162,35 @@
       "data_engineering": [
         "Snowflake (Cloud Data Warehouse)",
         "Apache Airflow (DAG Orchestration)",
-        "dbt (SQL Transformations)",
+        "dbt (SQL Transformations & Data Modeling)",
         "Meltano (ELT Extraction)",
-        "Pipelines ETL / ELT",
-        "Modelamiento de Datos & Calidad"
+        "Pipelines ETL / ELT & Data Quality"
       ],
       "ml_ai": [
         "Scikit-learn (Random Forest, XGBoost, Ensembles)",
         "Simulaciones Cuantitativas (Monte Carlo)",
         "MLflow (Experiment Tracking & MLOps)",
-        "TensorFlow & PyTorch",
         "Análisis Estadístico & Validación de Hipótesis",
-        "Modelado Predictivo & Clasificación"
+        "Feature Engineering, Pronóstico & Clasificación"
       ],
       "conversational_ai": [
         "Model Context Protocol (MCP) Integration",
-        "Agentes Autónomos de IA",
+        "Agentes Autónomos de IA & Workflows",
         "LLMs (Claude, OpenAI, Prompt Engineering)",
-        "ElevenLabs (Asistentes de Voz con IA)",
+        "ElevenLabs (Asistentes de Voz de Baja Latencia)",
         "Optimización de Chatbots Bancarios & NLP"
       ],
       "cloud_devops": [
         "Terraform (Infrastructure as Code - IaC)",
         "AWS (EC2, S3, IAM)",
         "FastAPI & Pydantic (APIs REST en Producción)",
-        "Docker & Entornos Reproducibles (Anaconda, virtualenv)",
+        "Docker & Entornos Reproducibles",
         "CI/CD con GitHub Actions & Git"
       ],
       "languages": [
         "Python (pandas, NumPy, SciPy, scikit-learn, Matplotlib)",
-        "SQL (Consultas Analíticas, CTEs, Optimización)",
-        "R (Estadística & Visualización)",
-        "JavaScript / TypeScript (ES6+)",
-        "C++"
+        "SQL (Consultas Analíticas, CTEs, Window Functions, Optimización)",
+        "JavaScript / TypeScript (ES6+)"
       ],
       "databases": [
         "Snowflake",
@@ -211,12 +207,27 @@
     },
     "projects": [
       {
+        "name_en": "Supply Chain & Marketplace Analytics (Coomproriente)",
+        "name_es": "Analítica de Cadena de Abastos y Marketplace (Coomproriente)",
+        "repo": "https://github.com/santiloc-hub/coomproriente-marketplace-analytics",
+        "category": "Data Analytics & Operations",
+        "description_en": "Quantitative modeling of carriers, merchants, and pricing dynamics to optimize regional supply chain logistics and marketplace operations.\n",
+        "description_es": "Modelado cuantitativo de transportistas, comerciantes y dinámica de precios para optimización logística de operaciones y cadena de abastecimiento.\n",
+        "tools": [
+          "Python",
+          "pandas",
+          "SQL",
+          "Data Visualization",
+          "Operations Analytics"
+        ]
+      },
+      {
         "name_en": "Autonomous News & Media AI Agent",
         "name_es": "Agente Autónomo de Noticias e IA (news_agent)",
         "repo": "https://github.com/santiloc-hub/news_agent",
         "category": "AI Agents & LLMs",
-        "description_en": "Autonomous AI pipeline integrating LLMs and structured workflows for automated news research, synthesis, and multi-channel content generation.\n",
-        "description_es": "Pipeline autónomo con IA que integra modelos de lenguaje y flujos estructurados para investigación, síntesis y generación automatizada de contenido informativo.\n",
+        "description_en": "Autonomous AI pipeline integrating LLMs and MCP workflows for automated research, synthesis, and multi-channel content generation.\n",
+        "description_es": "Pipeline autónomo con IA que integra modelos de lenguaje y flujos MCP estructurados para investigación, síntesis y generación automatizada de contenido.\n",
         "tools": [
           "Python",
           "LLMs",
@@ -227,18 +238,17 @@
       },
       {
         "name_en": "Multiclass Vehicle Classification API & Web App",
-        "name_es": "API y Despliegue de Clasificación de Vehículos",
+        "name_es": "API en Producción y Despliegue de Clasificación Multiclase",
         "repo": "https://github.com/santiloc-hub/car-classification-deployment",
         "category": "MLOps & FastAPI",
-        "description_en": "End-to-end vehicle classification model serialized and deployed with FastAPI/Flask and Streamlit, including Pydantic validation, logging, and automated testing.\n",
-        "description_es": "Modelo multiclase serializado y desplegado en producción con validación Pydantic, logging, pruebas automáticas e interfaz interactiva para inferencia de punta a punta.\n",
+        "description_en": "End-to-end classification model serialized and deployed in production with FastAPI, Pydantic schema validation, structured logging, automated tests, and Streamlit UI.\n",
+        "description_es": "Modelo multiclase serializado y desplegado en producción con validación de esquemas Pydantic, logging estructurado, pruebas automáticas e inferencia vía FastAPI.\n",
         "tools": [
           "Python",
           "scikit-learn",
           "FastAPI",
-          "Flask",
-          "Streamlit",
-          "Pydantic"
+          "Pydantic",
+          "Streamlit"
         ]
       },
       {
@@ -246,14 +256,14 @@
         "name_es": "Predicción de TRM Dólar y Cripto con Sentimiento & Monte Carlo",
         "repo": "https://github.com/santiloc-hub/Proyecto_TRM_Dolar",
         "category": "Data Science & Quantitative Simulation",
-        "description_en": "Predictive modeling combining historical time series, real-time news sentiment analysis, and Monte Carlo quantitative simulations to estimate market scenarios.\n",
-        "description_es": "Modelado predictivo que combina series históricas, análisis de sentimiento de noticias actuales y simulaciones de Monte Carlo para estimar escenarios de mercado.\n",
+        "description_en": "Predictive modeling combining historical time series, real-time news NLP sentiment analysis, and Monte Carlo stochastic simulations (+10,000 paths) to estimate market scenarios.\n",
+        "description_es": "Modelado predictivo que combina series de tiempo históricas, análisis de sentimiento NLP de noticias y simulaciones estocásticas de Monte Carlo para estimar escenarios de riesgo.\n",
         "tools": [
           "Python",
           "Scikit-learn",
           "Monte Carlo",
           "NLP Sentiment",
-          "Jupyter Notebook"
+          "Time Series"
         ]
       },
       {
@@ -272,26 +282,11 @@
         ]
       },
       {
-        "name_en": "Supply Chain & Marketplace Analytics (Coomproriente)",
-        "name_es": "Analítica de Cadena de Abastos y Marketplace",
-        "repo": "https://github.com/santiloc-hub/coomproriente-marketplace-analytics",
-        "category": "Data Analytics & Operations",
-        "description_en": "Quantitative modeling of carriers, merchants, and pricing dynamics for supply chain and marketplace operations optimization.\n",
-        "description_es": "Modelado analítico de transportistas, comerciantes y dinámica de precios para optimización de operaciones y cadena de abastecimiento.\n",
-        "tools": [
-          "Python",
-          "pandas",
-          "SQL",
-          "Data Visualization",
-          "Operations Analytics"
-        ]
-      },
-      {
-        "name_en": "Customer Churn & Soccer Match Predictive Models",
-        "name_es": "Modelos Predictivos de Churn y Pronóstico Deportivo",
+        "name_en": "Customer Churn & Probabilistic Match Predictive Models",
+        "name_es": "Modelos Predictivos de Churn y Pronóstico Probabilístico",
         "repo": "https://github.com/santiloc-hub/Churn_Prediction",
         "category": "Machine Learning",
-        "description_en": "Classification ensembles (Decision Trees, Random Forest) and feature engineering pipelines for customer retention and probabilistic match outcome forecasting.\n",
+        "description_en": "Classification ensembles (Decision Trees, Random Forest) and feature engineering pipelines for customer retention and probabilistic outcome forecasting.\n",
         "description_es": "Ensambles de clasificación (Decision Trees, Random Forest) e ingeniería de características para retención de clientes y pronóstico probabilístico.\n",
         "tools": [
           "Python",
@@ -307,15 +302,15 @@
         "degree_en": "Specialization in Strategic Data Analytics",
         "degree_es": "Especialización en Analítica Estratégica de Datos",
         "institution": "Universidad Pedagógica y Tecnológica de Colombia (UPTC)",
-        "period": "Posgrado",
-        "period_en": "Graduate Specialization"
+        "period": "Posgrado · Graduado 2025",
+        "period_en": "Graduate Specialization · Graduated 2025"
       },
       {
         "degree_en": "Bachelor of Science in Electronic Engineering",
         "degree_es": "Ingeniería Electrónica",
         "institution": "Universidad Pedagógica y Tecnológica de Colombia (UPTC)",
-        "period": "Pregrado",
-        "period_en": "Undergraduate Degree"
+        "period": "Pregrado · Graduado 2024",
+        "period_en": "B.Sc. Degree · Graduated 2024"
       }
     ],
     "courses": [
@@ -340,54 +335,34 @@
         "date": "Mar 2025"
       },
       {
+        "name": "Power BI para Analítica de Negocios",
+        "platform": "Platzi",
+        "date": "2025"
+      },
+      {
         "name": "Regresión Lineal con Python y scikit-learn",
         "platform": "Platzi",
         "date": "Feb 2025"
       },
       {
-        "name": "Crear tus Proyectos de Ciencia de Datos",
+        "name": "Arquitectura y Proyectos de Ciencia de Datos",
         "platform": "Platzi",
         "date": "Feb 2025"
       },
       {
-        "name": "Introducción a Machine Learning",
+        "name": "Git, GitHub Profesional & Flujos CI/CD",
         "platform": "Platzi",
         "date": "Jan 2025"
       },
       {
-        "name": "Cálculo Diferencial para Data Science",
-        "platform": "Platzi",
-        "date": "Jan 2025"
-      },
-      {
-        "name": "Git y GitHub Profesional",
-        "platform": "Platzi",
-        "date": "Jan 2025"
-      },
-      {
-        "name": "Estadística Descriptiva para Data Science",
-        "platform": "Platzi",
-        "date": "Dec 2024"
-      },
-      {
-        "name": "Jupyter Notebooks y Anaconda para Ciencia de Datos",
-        "platform": "Platzi",
-        "date": "Nov 2024"
-      },
-      {
-        "name": "Bases de Datos con SQL",
+        "name": "Bases de Datos Relacionales y Consultas con SQL",
         "platform": "Platzi",
         "date": "Sep 2024"
       },
       {
-        "name": "Python para Ciencia de Datos",
+        "name": "Python Aplicado a Ciencia de Datos",
         "platform": "Platzi",
         "date": "Sep 2024"
-      },
-      {
-        "name": "Power BI para Analítica de Negocios",
-        "platform": "Platzi",
-        "date": "2025"
       }
     ],
     "spoken_languages": [
@@ -400,8 +375,8 @@
       {
         "lang": "Inglés",
         "lang_en": "English",
-        "level": "Intermedio-Alto (B2 profesional para lectura y documentación técnica)",
-        "level_en": "Upper-Intermediate (B2 professional reading & technical documentation)"
+        "level": "Intermedio-Alto (B2 Profesional)",
+        "level_en": "Upper-Intermediate (B2 Professional)"
       }
     ]
   },

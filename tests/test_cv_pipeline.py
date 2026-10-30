@@ -154,6 +154,12 @@ class TestCVPipeline(unittest.TestCase):
         self.assertNotIn("para lectura", en_lang["level"])
         self.assertNotIn("reading", en_lang["level_en"])
 
+        # 7. LinkedIn URL must be ATS-safe ASCII (santiago-montana without ñ)
+        self.assertEqual(
+            self.cv_data["meta"]["linkedin"],
+            "https://www.linkedin.com/in/santiago-montana/",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
